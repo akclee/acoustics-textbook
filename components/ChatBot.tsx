@@ -165,9 +165,9 @@ export default function ChatBot() {
           {/* Messages */}
           <div className="flex-1 overflow-y-auto p-4 space-y-3">
             {messages.length === 0 && (
-              <div className="text-center text-gray-400 text-sm mt-8 px-4">
+              <div className="text-center text-gray-700 text-sm mt-8 px-4">
                 <p className="text-2xl mb-3">👋</p>
-                <p className="font-medium text-gray-500 mb-1">Hi, I'm your acoustics tutor!</p>
+                <p className="font-medium text-gray-800 mb-1">Hi, I'm your acoustics tutor!</p>
                 <p>Ask me a question about what you're reading, or click any suggested question in the chapter.</p>
               </div>
             )}
@@ -176,7 +176,7 @@ export default function ChatBot() {
                 <div className={`max-w-[82%] px-3 py-2 rounded-2xl text-sm leading-relaxed whitespace-pre-wrap ${
                   message.role === 'user'
                     ? 'bg-blue-600 text-white rounded-br-sm'
-                    : 'bg-gray-100 text-gray-800 rounded-bl-sm'
+                    : 'bg-gray-200 text-gray-900 rounded-bl-sm'
                 }`}>
                   {message.content || (
                     <span className="inline-flex gap-1 py-0.5">
@@ -202,7 +202,7 @@ export default function ChatBot() {
                 onKeyDown={handleKeyDown}
                 placeholder="Ask a question…"
                 disabled={isLoading}
-                className="flex-1 px-3 py-2 text-sm border border-gray-200 rounded-xl focus:outline-none focus:border-blue-400 disabled:opacity-50"
+                className="flex-1 px-3 py-2 text-sm text-gray-900 border border-gray-200 rounded-xl focus:outline-none focus:border-blue-400 disabled:opacity-50 placeholder:text-gray-400"
               />
               <button
                 onClick={() => sendMessage()}
@@ -215,7 +215,7 @@ export default function ChatBot() {
                 </svg>
               </button>
             </div>
-            <p className="text-xs text-gray-400 mt-1.5 text-center">
+            <p className="text-xs text-gray-600 mt-1.5 text-center">
               Enter to send · Tutor knows your current chapter
             </p>
           </div>

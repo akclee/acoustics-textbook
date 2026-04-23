@@ -63,49 +63,63 @@ function SourceSpectrum({ cx, topY }: { cx: number; topY: number }) {
 }
 
 function FilterSpectrum({ cx, topY }: { cx: number; topY: number }) {
-  // Bell-curve-like envelope with two formant humps
-  const POINTS = 80
+  // Three equal-height Gaussian peaks at F1, F2, F3
+  const POINTS = 120
   const maxH = 28
-  const bw = 100
+  const bw = 110
+  const formants = [0.2, 0.5, 0.8]   // positions along t=[0,1]
+  const sigma = 0.006                 // controls peak width
   const pts: string[] = []
   for (let i = 0; i <= POINTS; i++) {
     const t = i / POINTS
     const x = cx - bw / 2 + t * bw
-    // Two Gaussian bumps: F1 at t≈0.25, F2 at t≈0.65
-    const y1 = Math.exp(-((t - 0.25) ** 2) / 0.008) * maxH
-    const y2 = Math.exp(-((t - 0.65) ** 2) / 0.008) * maxH * 0.7
-    const y = topY + maxH - Math.max(y1, y2)
+    const val = formants.reduce((sum, f0) =>
+      sum + Math.exp(-((t - f0) ** 2) / sigma), 0)
+    const y = topY + maxH - Math.min(val, 1) * maxH
     pts.push(`${i === 0 ? 'M' : 'L'}${x.toFixed(1)},${y.toFixed(1)}`)
   }
-  // baseline
   const base = `L${(cx + bw / 2).toFixed(1)},${(topY + maxH).toFixed(1)} L${(cx - bw / 2).toFixed(1)},${(topY + maxH).toFixed(1)} Z`
+  // Peak label positions
+  const labelXs = formants.map(f => cx - bw / 2 + f * bw)
   return (
     <g>
-      <path d={pts.join(' ') + base} fill="#f59e0b" opacity={0.4} />
+      <path d={pts.join(' ') + base} fill="#f59e0b" opacity={0.35} />
       <path d={pts.join(' ')} fill="none" stroke="#f59e0b" strokeWidth={1.5} />
-      <text x={cx} y={topY + maxH + 12} textAnchor="middle" fontSize={8} fill="#6b7280">
-        F1    F2    F3
-      </text>
+      {['F1', 'F2', 'F3'].map((label, i) => (
+        <text key={label} x={labelXs[i]} y={topY + maxH + 12}
+              textAnchor="middle" fontSize={8} fill="#6b7280">{label}</text>
+      ))}
     </g>
   )
 }
 
 function OutputSpectrum({ cx, topY }: { cx: number; topY: number }) {
-  // Harmonic bars shaped by the formant envelope
+  // Harmonic bars shaped by three formants:
+  // F1 region (left) → tallest; F2 (middle) → medium; F3 (right) → shortest.
+  // Uses same Gaussian envelope as FilterSpectrum to stay consistent.
   const bars = [0, 1, 2, 3, 4, 5, 6]
   const barW = 5
   const spacing = 14
   const maxH = 28
-  // Rough envelope: boost bars near F1 (i=1) and F2 (i=4)
-  const amps = [0.4, 0.9, 0.5, 0.3, 0.75, 0.4, 0.2]
+  const bw = 110
+  const formants = [0.2, 0.5, 0.8]
+  // Descending peak heights: F1=1.0, F2=0.6, F3=0.35
+  const peakAmps = [1.0, 0.6, 0.35]
+  const sigma = 0.006
+
   return (
     <g>
       {bars.map((i) => {
         const bx = cx - (bars.length * spacing) / 2 + i * spacing
-        const bh = amps[i] * maxH
+        // Normalise bar x to [0,1] within the bw window
+        const t = (bx - (cx - bw / 2)) / bw
+        // Evaluate weighted Gaussian envelope at this t
+        const val = formants.reduce((sum, f0, fi) =>
+          sum + peakAmps[fi] * Math.exp(-((t - f0) ** 2) / sigma), 0)
+        const bh = Math.min(val, 1) * maxH
         return (
           <rect key={i} x={bx - barW / 2} y={topY + maxH - bh}
-                width={barW} height={bh} fill="#22c55e" opacity={0.7} rx={1} />
+                width={barW} height={Math.max(bh, 1)} fill="#22c55e" opacity={0.75} rx={1} />
         )
       })}
       <text x={cx} y={topY + maxH + 12} textAnchor="middle" fontSize={8} fill="#6b7280">

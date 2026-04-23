@@ -52,8 +52,7 @@ export default function ActivitySoundwalk() {
           <p className="text-sm text-teal-700 leading-relaxed mb-3">
             Take 60 seconds and simply listen. What do you hear right now?
             Then click below and the tutor will guide you through a reflection
-            on the sounds of your day — and connect them to the branches of
-            acoustics you just read about.
+            on the sounds of your day (or from sound clips that you found over the internet).
           </p>
           <button
             onClick={startSoundwalk}

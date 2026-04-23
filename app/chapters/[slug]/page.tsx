@@ -20,6 +20,9 @@ import SourceFilterDiagram from '@/components/diagrams/SourceFilterDiagram'
 import AcousticChainDiagram from '@/components/diagrams/AcousticChainDiagram'
 import ActivitySoundwalk from '@/components/ActivitySoundwalk'
 import ActivityProfessions from '@/components/ActivityProfessions'
+import ChapterQuiz from '@/components/ChapterQuiz'
+import Chapter01Quiz from '@/components/Chapter01Quiz'
+import PodcastPlayer from '@/components/PodcastPlayer'
 
 // ─── Static MDX components ───────────────────────────────────────────────────
 
@@ -73,6 +76,9 @@ const components = {
   AcousticChainDiagram,
   ActivitySoundwalk,
   ActivityProfessions,
+  ChapterQuiz,
+  Chapter01Quiz,
+  PodcastPlayer,
 }
 
 // ─── Page ────────────────────────────────────────────────────────────────────

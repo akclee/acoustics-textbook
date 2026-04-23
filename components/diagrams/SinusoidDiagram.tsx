@@ -62,10 +62,10 @@ export default function SinusoidDiagram() {
             T
           </text>
 
-          {/* — Phase annotation — show the x-offset at zero crossing — */}
-          {/* For phi=0 wave the zero crossing is at x=0; annotate it conceptually */}
-          <text x={W - 90} y={CY - 26} fontSize={11} fill="#64748b" fontFamily="monospace">
-            p(t) = A·sin(2πft + φ)
+          {/* — Equation label — centred at the top of the panel — */}
+          <text x={W / 2} y={14} textAnchor="middle" dominantBaseline="middle"
+                fontSize={12} fill="#64748b" fontFamily="monospace">
+            p(t) = A · sin(2πft + φ)
           </text>
 
           {/* Labels at extremes */}
