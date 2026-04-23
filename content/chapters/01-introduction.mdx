@@ -1,0 +1,322 @@
+---
+title: The World of Sound
+number: 1
+description: From the scope of acoustics across disciplines to the building blocks of all acoustic signals.
+---
+
+Sound is everywhere. It carries meaning in speech, emotion in music, and information about the physical world around us. This chapter begins by asking a deceptively simple question — *what is acoustics?* — and then builds the precise mathematical language needed to describe sound rigorously.
+
+## What Is Acoustics?
+
+The word *acoustics* comes from the Greek **ακουστικός** (*akoustikos*), meaning "of or for hearing." Its Latin synonym *sonicus* gives us the words *sonic*, *ultrasonic*, and *infrasonic*. At its broadest, acoustics is the **science of sound** — the study of how mechanical energy propagates through matter as vibrational waves.
+
+A formal definition has three parts:
+
+<Callout type="key">
+Acoustics is the science of **generation**, **transmission**, and **reception** of sound — the full chain from whatever creates a disturbance, through the medium it travels in, to whatever detects it.
+</Callout>
+
+### Sound vs. Light
+
+Sound and light are both waves, but they are fundamentally different in nature:
+
+- **Sound requires a medium** — it cannot travel through a vacuum. Light does not need a medium and travels freely through space.
+- **Sound is a mechanical wave** — it moves by physically pushing and pulling molecules. Light is an electromagnetic wave.
+- **Sound is longitudinal** — molecules are displaced in the same direction the wave travels. Light is transverse — the field oscillates perpendicular to the direction of travel.
+
+This is why the famous tagline *"In space, no one can hear you scream"* is scientifically accurate. Sound simply has no medium to propagate through in the vacuum of space.
+
+## A Brief History of Acoustics
+
+Humans have been thinking about sound for millennia:
+
+- **~6,000 BC** — Wave designs appear on Yangshao pottery, suggesting early awareness of wave phenomena
+- **~2,000 BC** — Musical scales and instruments are studied systematically in China
+- **~500 BC** — Pythagoras investigates vibrating strings and discovers the mathematical basis of musical intervals
+- **~20 BC** — Vitruvius, Roman architect and engineer, contributes to the acoustic design of theaters — some of which still perform remarkably well today
+- **~1,030 AD** — Abū Rayhān al-Bīrūnī, Iranian scholar, correctly posits that the speed of sound is much less than the speed of light
+
+The modern science of acoustics developed rapidly alongside mathematics and physics, with major contributions from Newton, Euler, Helmholtz, Rayleigh, and many others. Today it encompasses an enormous range of disciplines.
+
+## The Scope of Acoustics: ASA Technical Areas
+
+The breadth of acoustics is captured in **Lindsay's Wheel of Acoustics**, which organizes the field into four main domains — Earth sciences, Engineering, Life sciences, and the Arts — with countless interconnections between them.
+
+<figure className="my-8">
+  <img
+    src="/images/lindsays-wheel.jpg"
+    alt="Lindsay's Wheel of Acoustics — a circular diagram organizing acoustics into Earth Sciences, Engineering, Life Sciences, and Arts domains"
+    className="rounded-xl border border-slate-200 shadow-sm mx-auto max-w-lg w-full"
+  />
+  <figcaption className="text-center text-sm text-slate-500 mt-3">
+    Lindsay's Wheel of Acoustics (1964). <em>Journal of the Acoustical Society of America</em>, 36, 2241-43.
+  </figcaption>
+</figure>
+
+The Acoustical Society of America (ASA) formally recognizes 14 technical areas. Together they span nearly every domain of science, engineering, medicine, and the arts:
+
+### Physical and Engineering Sciences
+
+**Physical Acoustics (PA)** — the underlying physics of acoustical phenomena in solids, liquids, and gases. Includes infrasound, shock waves, industrial and biomedical ultrasonics, aeroacoustics, and acoustic metamaterials.
+
+**Engineering Acoustics (EA)** — design and modeling of acoustical transducers, arrays, and instrumentation. Concerned with measurement, metrology, and calibration.
+
+**Structural Acoustics and Vibration (SA)** — mechanical vibrations, shock, and structure-borne wave propagation. Includes active noise/vibration control, acoustic cloaking, and structural health monitoring.
+
+**Signal Processing in Acoustics (SP)** — new methods to understand acoustic phenomena, including detection and tracking of acoustic sources, time-frequency analysis, Bayesian signal processing, and wavelet analysis.
+
+### Environmental and Ocean Sciences
+
+**Acoustical Oceanography (AO)** — using underwater sound to study the sea: ocean climate, waves, turbulence, habitat characterization, and air-sea interactions.
+
+**Underwater Acoustics (UW)** — propagation of sound through water, underwater instrumentation, seismoacoustics, scattering, reverberation, and ambient noise.
+
+**Noise (NS)** — any sound considered objectionable or interfering. Covers effects of noise exposure, hearing loss, noise regulations, soundscapes, and speech privacy.
+
+### Life and Medical Sciences
+
+**Biomedical Acoustics (BA)** — sound generation and propagation in the human body. Includes diagnostic and therapeutic ultrasound, medical imaging, and physiological measurements.
+
+**Psychological and Physiological Acoustics (PP)** — the human auditory system from anatomy to perception. Covers auditory pathways, hearing disorders, auditory prostheses, and perceptual organization of sound.
+
+**Animal Bioacoustics (AB)** — sound in animals: communication, biosonar (echolocation), auditory anatomy, and the effects of human-generated noise on wildlife.
+
+### Language and the Arts
+
+**Speech Communication (SC)** — production, transmission, and perception of spoken language. Includes acoustic phonetics, speech acquisition, speech processing, and hearing disorders.
+
+**Musical Acoustics (MA)** — physics of musical sound production, music perception and cognition, and analysis and synthesis of musical sounds.
+
+### Architecture and Built Environment
+
+**Architectural Acoustics (AA)** — sound in and around buildings. Covers room acoustics, sound isolation, noise control of building systems, and electroacoustic system design.
+
+### Education
+
+**Education in Acoustics (ED)** — the newest ASA technical area, focused on acoustics education at all levels.
+
+<Callout type="info">
+The professionals who work in acoustics are equally diverse: acousticians, audiologists, audio engineers, architects, biologists, neuroscientists, physicists, electrical engineers, oceanographers, lawyers, linguists, physicians, meteorologists, and more. Acoustics is one of the most genuinely interdisciplinary fields in science.
+</Callout>
+
+<Section title="From the big picture to the fundamentals" />
+
+With this panoramic view of what acoustics encompasses, we now turn to the foundational concepts that underpin every subfield above. No matter whether you are studying whale songs, designing concert halls, building hearing aids, or processing sonar signals, you need a precise language for describing sound. That language begins with the sinusoid.
+
+## What Can We Hear?
+
+The human auditory system is remarkable but not unlimited. We can detect sounds only within a specific range of frequencies, roughly **20 Hz to 20,000 Hz (20 kHz)**. Below this range lies **infrasound** — the deep rumbles of earthquakes, large machinery, and some animal communication. Above it lies **ultrasound** — used in medical imaging, industrial testing, and echolocation by bats and dolphins.
+
+<Callout type="key">
+**Audible range:** 20 Hz – 20 kHz
+
+This range varies considerably between individuals and declines with age, particularly at high frequencies. A teenager can typically hear up to 18–20 kHz; a 60-year-old may struggle above 8–10 kHz.
+</Callout>
+
+Within our audible range, sensitivity is not uniform. We are most sensitive to frequencies between about 1,000 and 4,000 Hz — not coincidentally, this is the frequency range most important for understanding speech.
+
+## The Building Block: Sinusoids
+
+Every sound — no matter how complex — can be understood as a combination of simpler sounds called **sinusoids**, or pure tones. This is not just a mathematical convenience; it reflects something deep about how the physical world works and how our auditory system processes sound.
+
+A sinusoid is a signal whose amplitude varies smoothly and periodically over time, tracing the shape of a sine wave. The word comes from *sinus* (Latin: curve or fold) — a curve of sines from trigonometry.
+
+### The Sinusoid Equation
+
+A sinusoid is completely described by three parameters:
+
+<Equation label="The fundamental equation of a sinusoid">
+x(t) = A · sin(2πf·t + φ)
+</Equation>
+
+Where:
+- **A** = peak amplitude (how large the oscillation is)
+- **f** = frequency in Hz (how fast it oscillates)
+- **φ** (phi) = starting phase in radians (where in its cycle it begins at t = 0)
+- **t** = time in seconds
+
+Think of the sinusoid as a point rotating around a circle at a constant rate. The sine wave you see in a time plot is just the vertical position of that rotating point, traced out over time. The angle of rotation — the **instantaneous phase** θ(t) — grows linearly with time:
+
+<Equation>
+θ(t) = φ + 2πf·t
+</Equation>
+
+## The Three Parameters
+
+### Amplitude
+
+The amplitude A tells us the maximum displacement from zero — the "height" of the wave. But there are several ways to quantify amplitude:
+
+- **Peak amplitude**: the maximum value, A
+- **Peak-to-peak amplitude**: the full swing from minimum to maximum, 2A
+- **Root-mean-square (RMS) amplitude**: a kind of average that captures the energy content of the signal. For a pure sinusoid, A_rms = A / √2
+
+RMS amplitude is the most commonly used in acoustics and engineering because it relates directly to power and energy.
+
+### Frequency
+
+Frequency f tells us how many complete cycles occur per second, measured in **Hertz (Hz)**. A 440 Hz tone (concert A) completes 440 cycles every second.
+
+Closely related is the **period** T — the time for one complete cycle:
+
+<Equation>
+f = 1/T    or equivalently    T = 1/f
+</Equation>
+
+High frequency means short period; low frequency means long period. A 100 Hz tone has a period of 10 ms; a 10,000 Hz tone has a period of just 0.1 ms.
+
+### Phase
+
+The starting phase φ determines where in its cycle the sinusoid begins at time t = 0. It is measured in radians (or degrees). Two sinusoids of the same frequency and amplitude but different starting phases look like shifted versions of each other.
+
+Phase becomes especially important when we add multiple sinusoids together — the relative phase between them determines whether they reinforce or cancel each other.
+
+<Callout type="tip">
+Phase is invisible in a single sinusoid's spectrum — it only becomes apparent when you compare two signals or look at the waveform directly. Knowing the amplitude at each frequency is often enough to describe what something *sounds like*, but phase determines the waveform shape.
+</Callout>
+
+## Sound in Space: Speed and Wavelength
+
+So far we have described sound as a function of time. But sound is also a physical wave traveling through a medium — it has a spatial dimension too.
+
+### Speed of Sound
+
+The speed at which a sound wave travels depends on the **elasticity** and **density** of the medium:
+
+<Equation label="Speed of sound in a medium">
+v = √(E / ρ)
+</Equation>
+
+Where E is the elasticity of the medium and ρ (rho) is its density. A stiffer, less dense medium transmits sound faster.
+
+- In air at room temperature: **~343 m/s** (~1,125 ft/s)
+- In water: **~1,480 m/s** — much faster, because water is far less compressible
+- In steel: **~5,000 m/s**
+
+The speed of sound in air also increases with temperature — roughly 0.6 m/s for every degree Celsius.
+
+### Wavelength
+
+The **wavelength** λ (lambda) is the physical length of one complete cycle of the wave — the distance between two consecutive pressure peaks:
+
+<Equation>
+λ = v / f
+</Equation>
+
+This relationship is fundamental. A 1,000 Hz tone in air has a wavelength of about 34 cm — roughly the size of your head. A 100 Hz tone has a wavelength of 3.4 m. A 10,000 Hz tone has a wavelength of just 3.4 cm.
+
+<Callout type="key">
+Wavelength matters enormously in acoustics. When a sound wave encounters an object smaller than its wavelength, it tends to bend around it (diffraction). When the object is larger, it casts an acoustic "shadow." This is why low-frequency sounds travel around walls easily while high-frequency sounds are blocked.
+</Callout>
+
+## Waveform and Spectrum: Two Ways to See a Sound
+
+Any sound can be described in two complementary ways:
+
+**The waveform** — amplitude as a function of time, x(t). This shows you how the sound evolves moment by moment.
+
+**The spectrum** — amplitude (and phase) as a function of frequency, A(f) and φ(f). This shows you which frequencies are present and how strong each one is.
+
+These are not two different things — they are two views of the same underlying signal. The mathematical bridge between them is the **Fourier transform**, which converts from one domain to the other and back. Given the full spectrum (amplitude and phase at every frequency), you can perfectly reconstruct the waveform, and vice versa.
+
+<Section title="When to use each domain" />
+
+The time domain is natural when you care about *timing* — when did this event start, how long did it last? The frequency domain is natural when you care about *what* the sound contains — which frequencies, which harmonics, what pitch?
+
+In practice, you will constantly move between the two domains depending on the question you are asking.
+
+## Adding Sinusoids
+
+Because sinusoids are building blocks, more complex signals are built by adding them together. This has important consequences:
+
+### Constructive and Destructive Interference
+
+When two sinusoids of the same frequency are added, the result depends on their **relative phase**:
+
+- **In phase** (0° difference): amplitudes add — the result is twice as large. This is **constructive interference**.
+- **Out of phase** (180° difference): amplitudes cancel — the result is silence. This is **destructive interference**.
+- **Anything in between**: partial reinforcement or partial cancellation.
+
+This is not just a mathematical curiosity — it is the physical basis for phenomena like noise-canceling headphones (which generate an out-of-phase copy of ambient noise to cancel it), room acoustics (where reflections combine constructively or destructively at different locations), and many audio engineering techniques.
+
+## Complex Sounds
+
+### Periodic Complex Tones
+
+Most sounds we care about are not pure sinusoids — they are **complex tones**, built from many sinusoids simultaneously. A **periodic** complex tone is one that repeats at a regular rate. Such sounds have a spectrum consisting of a series of discrete frequency components called **harmonics**.
+
+If the lowest frequency component (the **fundamental frequency**, f₀) is 200 Hz, the harmonics appear at integer multiples: 200, 400, 600, 800 Hz, and so on. The spacing between harmonics equals the fundamental frequency.
+
+<Callout type="key">
+The fundamental frequency determines the **perceived pitch** of a complex tone — not necessarily which harmonics are loudest or even whether the fundamental itself is present. You can remove the 200 Hz component entirely and listeners will still hear a pitch of 200 Hz, because the brain infers it from the harmonic spacing. This is called the **missing fundamental**.
+</Callout>
+
+### Aperiodic Sounds
+
+Not all sounds are periodic. **Aperiodic** sounds do not repeat at a regular rate:
+
+- **Noise**: a random signal containing energy at all frequencies simultaneously. White noise has equal energy at every frequency; pink noise has energy that falls off at higher frequencies (more natural-sounding).
+- **Impulses**: a brief click or pop that contains energy at all frequencies, with all phases aligned at a single instant in time.
+- **Damped tones**: a sinusoid whose amplitude decays over time due to friction and energy loss. Real-world vibrating objects — guitar strings, drum membranes, bells — all produce damped tones.
+
+<Callout type="info">
+In practice, many sounds are **quasi-periodic**: they behave like periodic signals over short time windows but change more slowly over longer timescales. Speech is a good example — a sustained vowel looks nearly periodic over any 10 ms window, but the vocal tract shape changes continuously. We analyze such sounds by treating short segments as periodic.
+</Callout>
+
+### Periodic vs. Aperiodic Spectra
+
+The type of signal has a direct consequence for its spectrum:
+
+- **Periodic sounds** → **line spectrum**: energy only at the fundamental and its harmonics — discrete, isolated spikes
+- **Aperiodic sounds** → **continuous spectrum**: energy spread across all frequencies, forming a smooth curve
+
+## Time-Frequency Duality
+
+There is a deep mathematical relationship between the time and frequency domains that has important practical consequences: **you cannot simultaneously have a signal that is perfectly localized in both time and frequency**.
+
+- A signal that lasts forever in time can be perfectly localized in frequency (a single pure tone)
+- A signal that is perfectly localized in time (an ideal impulse) must contain all frequencies equally
+- Every real-world signal — finite in duration, limited in bandwidth — occupies *some* spread in both domains
+
+This is sometimes called the **time-bandwidth product**, and it has direct implications for measurement, perception, and signal processing. The shorter the observation window you use to analyze a signal, the poorer your frequency resolution will be.
+
+<Callout type="key">
+Time-frequency duality is why you cannot simultaneously know the exact timing and exact pitch of a musical note. A note played for only 1 ms would need to contain such a broad range of frequencies that it would not have a definable pitch. Real musical notes need some duration to establish their pitch clearly.
+</Callout>
+
+## Systems: Generation, Propagation, and Reception
+
+Sound does not exist in isolation — it is always produced by something, travels through something, and is received by something. This **source → medium → receiver** chain is a central organizing framework in acoustics.
+
+Each element in the chain can be modeled as a **system** that takes an input signal and produces an output signal. The key property of most acoustic systems is **linearity**: the output to a combination of inputs equals the combination of outputs to each input separately. This is what makes the sinusoid decomposition so powerful — analyze what a system does to each sinusoid, and you know what it does to any signal.
+
+### The Speech and Hearing Chain
+
+Speech production is a beautiful example of a source-filter system:
+
+1. **Source**: the vocal folds vibrate, producing a periodic signal rich in harmonics
+2. **Filter**: the vocal tract — the throat, mouth, and nasal cavity — shapes the spectrum by amplifying certain frequency regions (called **formants**) and attenuating others
+3. **Reception**: the ear receives the filtered signal and the auditory system processes it
+
+The vocal tract acts as a resonator. For a neutral vowel, the average adult vocal tract (~17.5 cm long) has resonances at approximately 500 Hz, 1500 Hz, and 2500 Hz — these are the first three formants (F1, F2, F3). Different vowels are produced by changing the shape of the vocal tract, which shifts the formant frequencies.
+
+This **source-filter model** is fundamental to understanding speech acoustics, and it illustrates a broader principle: the output of any system equals the convolution of the input with the system's impulse response (or equivalently, the multiplication of their spectra in the frequency domain).
+
+<Callout type="tip">
+We will return to the source-filter model and convolution in detail in Chapter 3 (Signal Analysis) and Chapter 5 (Hearing & Speech). For now, the key insight is that the vocal tract does not change the source frequencies — it selectively amplifies and attenuates them.
+</Callout>
+
+## Summary
+
+This chapter introduced the core vocabulary of acoustics:
+
+- Sound exists within a human-audible range of roughly **20 Hz to 20 kHz**
+- The fundamental building block is the **sinusoid**: x(t) = A·sin(2πft + φ)
+- A sinusoid has three parameters: **amplitude**, **frequency**, and **phase**
+- Sound travels as a wave with **speed** determined by the medium and **wavelength** λ = v/f
+- The same signal can be described as a **waveform** (time domain) or a **spectrum** (frequency domain) — the Fourier transform connects the two
+- Complex sounds are built from many sinusoids; **periodic** sounds have line spectra, **aperiodic** sounds have continuous spectra
+- **Time-frequency duality**: a signal cannot be simultaneously localized in both time and frequency
+- Acoustic systems can be modeled as **source → filter → receiver**, exemplified by the speech production chain
+
+With this foundation, we are ready to explore how these principles apply to specific domains — starting with vibrating strings and musical acoustics in Chapter 2.

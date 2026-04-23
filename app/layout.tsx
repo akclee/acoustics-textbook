@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist } from "next/font/google";
 import "./globals.css";
 import Sidebar from "@/components/Sidebar";
+import ChatBot from "@/components/ChatBot";
 
 const geist = Geist({
   subsets: ["latin"],
@@ -19,15 +20,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={geist.variable}>
+    <html lang="en" className={geist.variable} data-theme="light">
       <body className="antialiased bg-gray-50 text-gray-900">
         <div className="flex h-screen overflow-hidden">
           <Sidebar />
-          <main className="flex-1 overflow-y-auto">
+          <main className="flex-1 overflow-y-auto bg-white">
             {children}
           </main>
         </div>
+        <ChatBot />
       </body>
     </html>
-  );
+  )
 }
