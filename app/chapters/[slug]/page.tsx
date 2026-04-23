@@ -13,6 +13,13 @@ import TableOfContents from '@/components/TableOfContents'
 import ChatPrompt from '@/components/ChatPrompt'
 import SineWaveExplorer from '@/components/SineWaveExplorer'
 import SinusoidDiagram from '@/components/diagrams/SinusoidDiagram'
+import FrequencyRangeDiagram from '@/components/diagrams/FrequencyRangeDiagram'
+import WaveformSpectrumDiagram from '@/components/diagrams/WaveformSpectrumDiagram'
+import InterferenceDiagram from '@/components/diagrams/InterferenceDiagram'
+import SourceFilterDiagram from '@/components/diagrams/SourceFilterDiagram'
+import AcousticChainDiagram from '@/components/diagrams/AcousticChainDiagram'
+import ActivitySoundwalk from '@/components/ActivitySoundwalk'
+import ActivityProfessions from '@/components/ActivityProfessions'
 
 // ─── Static MDX components ───────────────────────────────────────────────────
 
@@ -59,6 +66,13 @@ const components = {
   ChatPrompt,
   SineWaveExplorer,
   SinusoidDiagram,
+  FrequencyRangeDiagram,
+  WaveformSpectrumDiagram,
+  InterferenceDiagram,
+  SourceFilterDiagram,
+  AcousticChainDiagram,
+  ActivitySoundwalk,
+  ActivityProfessions,
 }
 
 // ─── Page ────────────────────────────────────────────────────────────────────
