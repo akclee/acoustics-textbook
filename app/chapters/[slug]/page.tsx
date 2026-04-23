@@ -1,6 +1,7 @@
 // app/chapters/[slug]/page.tsx
-// Reads an MDX file from content/chapters/{slug}.mdx and renders it.
-// Requires: npm install next-mdx-remote gray-matter
+// Two-column layout: scrolling article content + sticky right TOC.
+// Custom MDX components (Callout, Equation, Section, ChatPrompt,
+// SineWaveExplorer, SinusoidDiagram) are available in every chapter.
 
 import { readFileSync, existsSync } from 'fs'
 import { join } from 'path'
@@ -8,14 +9,20 @@ import { notFound } from 'next/navigation'
 import matter from 'gray-matter'
 import { MDXRemote } from 'next-mdx-remote/rsc'
 
-// Custom components available inside MDX files
+import TableOfContents from '@/components/TableOfContents'
+import ChatPrompt from '@/components/ChatPrompt'
+import SineWaveExplorer from '@/components/SineWaveExplorer'
+import SinusoidDiagram from '@/components/diagrams/SinusoidDiagram'
+
+// ─── Static MDX components ───────────────────────────────────────────────────
+
 const components = {
-  // Callout box for key concepts
+  // ── Callout box (info / key / warning / tip) ──────────────────────────────
   Callout: ({ children, type = 'info' }: { children: React.ReactNode; type?: string }) => {
     const styles: Record<string, string> = {
       info:    'bg-blue-50 border-blue-400 text-blue-900',
       key:     'bg-amber-50 border-amber-400 text-amber-900',
-      warning: 'bg-red-50 border-red-400 text-red-900',
+      warning: 'bg-red-50  border-red-400  text-red-900',
       tip:     'bg-green-50 border-green-400 text-green-900',
     }
     const labels: Record<string, string> = {
@@ -31,7 +38,7 @@ const components = {
     )
   },
 
-  // Equation display box
+  // ── Equation display box ──────────────────────────────────────────────────
   Equation: ({ children, label }: { children: React.ReactNode; label?: string }) => (
     <div className="bg-slate-50 border border-slate-200 rounded-xl px-6 py-4 my-6 text-center font-mono text-lg">
       {children}
@@ -39,7 +46,7 @@ const components = {
     </div>
   ),
 
-  // Section divider with label
+  // ── Section divider ───────────────────────────────────────────────────────
   Section: ({ title }: { title: string }) => (
     <div className="flex items-center gap-4 my-10">
       <div className="flex-1 h-px bg-slate-200" />
@@ -47,7 +54,14 @@ const components = {
       <div className="flex-1 h-px bg-slate-200" />
     </div>
   ),
+
+  // ── Interactive / diagram components ─────────────────────────────────────
+  ChatPrompt,
+  SineWaveExplorer,
+  SinusoidDiagram,
 }
+
+// ─── Page ────────────────────────────────────────────────────────────────────
 
 export default async function ChapterPage({
   params,
@@ -65,9 +79,9 @@ export default async function ChapterPage({
   const { content, data } = matter(source)
 
   return (
-    <div className="max-w-3xl mx-auto px-8 py-12">
+    <div className="max-w-6xl mx-auto px-8 py-12">
       {/* Chapter header */}
-      <div className="mb-10">
+      <header className="mb-10 max-w-3xl">
         <p className="text-xs font-semibold uppercase tracking-widest text-blue-600 mb-2">
           Chapter {data.number ?? ''}
         </p>
@@ -75,19 +89,29 @@ export default async function ChapterPage({
         {data.description && (
           <p className="text-xl text-gray-500 leading-relaxed">{data.description}</p>
         )}
-      </div>
+      </header>
 
-      {/* Chapter content */}
-      <div className="prose prose-slate prose-lg max-w-none
-        prose-headings:font-bold prose-headings:text-gray-900
-        prose-h2:text-2xl prose-h2:mt-12 prose-h2:mb-4
-        prose-h3:text-xl prose-h3:mt-8 prose-h3:mb-3
-        prose-p:text-gray-700 prose-p:leading-relaxed
-        prose-li:text-gray-700
-        prose-strong:text-gray-900
-        prose-code:bg-slate-100 prose-code:px-1 prose-code:rounded prose-code:text-sm
-        prose-a:text-blue-600 prose-a:no-underline hover:prose-a:underline">
-        <MDXRemote source={content} components={components} />
+      {/* Two-column layout: article + TOC */}
+      <div className="flex gap-16 items-start">
+        {/* Main content */}
+        <article
+          id="chapter-content"
+          className="min-w-0 flex-1 prose prose-slate prose-lg max-w-none
+            prose-headings:font-bold prose-headings:text-gray-900
+            prose-h2:text-2xl prose-h2:mt-12 prose-h2:mb-4
+            prose-h3:text-xl prose-h3:mt-8 prose-h3:mb-3
+            prose-p:text-gray-700 prose-p:leading-relaxed
+            prose-li:text-gray-700
+            prose-strong:text-gray-900
+            prose-code:bg-slate-100 prose-code:px-1 prose-code:rounded prose-code:text-sm
+            prose-a:text-blue-600 prose-a:no-underline hover:prose-a:underline
+            prose-img:rounded-xl prose-img:shadow-sm"
+        >
+          <MDXRemote source={content} components={components} />
+        </article>
+
+        {/* Sticky table of contents */}
+        <TableOfContents />
       </div>
     </div>
   )
