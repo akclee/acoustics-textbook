@@ -36,9 +36,9 @@ The region a filter passes is called the **passband**; the region it blocks is t
 In signal processing, a **filter** is any system that selectively amplifies or attenuates signal energy at different frequencies. The property being "sieved" is frequency content.
 </Callout>
 
-<ChatPrompt questions={[
-  "Before we look at the formal filter types, let's think about the physical world. Can you name a physical filter you've encountered in everyday life — not in electronics, but something you can hold or see? What does it pass, and what does it block? Let's see how many different kinds we can come up with together."
-]} title="Activity: Physical filters around you" />
+*Before we look at the formal filter types, take a moment to explore with the AI tutor:*
+
+<ChatPrompt q1="Before we look at the formal filter types, let's think about the physical world. Can you name a physical filter you've encountered in everyday life — not in electronics, but something you can hold or see? What does it pass, and what does it block? Let's see how many different kinds we can come up with together." title="Activity: Physical filters around you" />
 
 ### 3.1.3 Types of Filters
 
@@ -50,9 +50,9 @@ Four fundamental filter types cover most signal-processing needs:
 
 ---
 
-<ChatPrompt questions={[
-  "A telephone cuts off below 300 Hz, yet a typical male speaking voice has a fundamental pitch around 100–150 Hz — well below that cutoff. So how can you still hear the pitch of someone's voice on a phone call?"
-]} title="Think it through: the telephone and pitch" />
+*This raises a puzzle — think it through with the AI tutor:*
+
+<ChatPrompt q1="A telephone cuts off below 300 Hz, yet a typical male speaking voice has a fundamental pitch around 100–150 Hz — well below that cutoff. So how can you still hear the pitch of someone's voice on a phone call?" title="Think it through: the telephone and pitch" />
 
 ---
 
@@ -64,11 +64,9 @@ Four fundamental filter types cover most signal-processing needs:
 **Bandwidth** (BW) of a filter is the width of its passband in Hz. For a band-pass filter: BW = f<sub>c2</sub> − f<sub>c1</sub>. The **center frequency** is the midpoint: f<sub>center</sub> = (f<sub>c1</sub> + f<sub>c2</sub>) / 2.
 </Callout>
 
-<ChatPrompt questions={[
-  "If the telephone passes 300–3,400 Hz as a bandpass filter, what speech sounds are most affected by this cutoff?",
-  "Why does sound through a wall sound 'muffled' — what type of filter does a wall behave like?",
-  "A notch filter removes exactly 60 Hz from a recording. What is its bandwidth if it spans 58–62 Hz?"
-]} title="Filters in everyday acoustics" />
+*Test your understanding with the AI tutor:*
+
+<ChatPrompt q1="If the telephone passes 300–3,400 Hz as a bandpass filter, what speech sounds are most affected by this cutoff?" q2="Why does sound through a wall sound 'muffled' — what type of filter does a wall behave like?" q3="A notch filter removes exactly 60 Hz from a recording. What is its bandwidth if it spans 58–62 Hz?" title="Filters in everyday acoustics" />
 
 ### 3.1.4 Interactive: Explore Filter Responses
 
@@ -86,9 +84,9 @@ More generally, any system can be described by its **frequency response** — th
 The frequency response of a system specifies, for every input frequency, the **amplitude gain** (how much it amplifies or attenuates) and the **phase shift** (how much it delays that frequency). Together these fully characterize the system's linear behavior. However, we often only care about the power of the frequency response, and the phase shift becomes not as relevant.
 </Callout>
 
-<ChatPrompt questions={[
-  "If you're comfortable with complex numbers: the frequency response H(f) is actually a complex-valued function — H(f) = |H(f)| · e^(jφ(f)). The magnitude |H(f)| is the amplitude gain, and φ(f) is the phase shift at each frequency. Can you explain what it means geometrically for H(f) to be a point in the complex plane rather than a simple real number? Why does this representation capture both gain and phase in one expression?"
-]} title="Going deeper: frequency response as complex gain" />
+*Familiar with complex numbers? Go deeper with the AI tutor:*
+
+<ChatPrompt q1="If you're comfortable with complex numbers: the frequency response H(f) is actually a complex-valued function — H(f) = |H(f)| · e^(jφ(f)). The magnitude |H(f)| is the amplitude gain, and φ(f) is the phase shift at each frequency. Can you explain what it means geometrically for H(f) to be a point in the complex plane rather than a simple real number? Why does this representation capture both gain and phase in one expression?" title="Going deeper: frequency response as complex gain" />
 
 Filtering, mathematically, is **multiplication in the frequency domain**: if X(f) is the spectrum of the input and H(f) is the frequency response of the filter, the output spectrum is:
 
@@ -130,11 +128,9 @@ Drag the Q slider to see how damping simultaneously affects the time-domain ring
 
 <DampingExplorer />
 
-<ChatPrompt questions={[
-  "A tuning fork has Q ≈ 1000. What does that tell you about how long it rings and how narrow its frequency peak is?",
-  "Noise-canceling headphones use resonant cavities tuned to specific frequencies. Would you want high-Q or low-Q resonators, and why?",
-  "How does the Q factor relate to the reverberation time of a concert hall?"
-]} title="Resonance and the Q factor" />
+*Explore further with the AI tutor:*
+
+<ChatPrompt q1="A tuning fork has Q ≈ 1000. What does that tell you about how long it rings and how narrow its frequency peak is?" q2="Noise-canceling headphones use resonant cavities tuned to specific frequencies. Would you want high-Q or low-Q resonators, and why?" q3="How does the Q factor relate to the reverberation time of a concert hall?" title="Resonance and the Q factor" />
 
 ---
 
@@ -184,9 +180,9 @@ Three practical methods exist for measuring a transfer function:
 
 <Equation label="Transfer function from impulse response">H(f) = 𝓕&#123;h(t)&#125;</Equation>
 
-<ChatPrompt questions={[
-  "The goal of all three methods is the same: find the system's gain at every frequency. The swept-tone method is the most obvious — you test one frequency at a time. But why does playing random noise also reveal the full transfer function? And perhaps most surprisingly: why does a single brief impulse — just one click — contain enough information to characterise the entire system across all frequencies?"
-]} title="Think it through: why do these measurement methods work?" />
+*Why do all three methods work? Think it through with the AI tutor:*
+
+<ChatPrompt q1="The goal of all three methods is the same: find the system's gain at every frequency. The swept-tone method is the most obvious — you test one frequency at a time. But why does playing random noise also reveal the full transfer function? And perhaps most surprisingly: why does a single brief impulse — just one click — contain enough information to characterise the entire system across all frequencies?" title="Think it through: why do these measurement methods work?" />
 
 ### 3.4.2 Narrowband vs. Broadband Systems
 
@@ -216,15 +212,13 @@ The transfer-function framework applies everywhere in acoustics:
 
 **The Tacoma Narrows Bridge (1940):** A catastrophic resonance failure. Wind produced a broadband input; the bridge structure had a prominent resonant frequency at about 0.2 Hz. The wind continuously added energy at this frequency until the amplitude exceeded the structural limit. The failure illustrates why engineers must identify and either avoid or damp prominent resonances.
 
-<ChatPrompt questions={[
-  "The vocal tract acts as a filter on the vocal fold source. What changes when you shift from the vowel /ah/ to /ee/ — the source, the filter, or both?",
-  "Why does 'HD Voice' telephony sound noticeably clearer than standard phone calls, even though you can already understand speech on a normal call?",
-  "How would you measure the transfer function of a concert hall using the impulse method?"
-]} title="Transfer functions in the real world" />
+*Test your understanding of transfer functions with the AI tutor:*
 
-<ChatPrompt questions={[
-  "Have you ever had a hearing test? An audiologist puts headphones on you, plays a soft beep, and asks 'can you hear that?' — testing at 250, 500, 1000, 2000, 4000 Hz and so on. Here's something to think about: those tones are supposed to test one frequency at a time. But does a recorded beep really contain only one frequency? What would need to be true for that to hold exactly — and what does your answer reveal about the measurement method?"
-]} title="Think it through: the audiologist's pure-tone test" />
+<ChatPrompt q1="The vocal tract acts as a filter on the vocal fold source. What changes when you shift from the vowel /ah/ to /ee/ — the source, the filter, or both?" q2="Why does 'HD Voice' telephony sound noticeably clearer than standard phone calls, even though you can already understand speech on a normal call?" q3="How would you measure the transfer function of a concert hall using the impulse method?" title="Transfer functions in the real world" />
+
+*Here's a real-world application of these ideas — explore it with the AI tutor:*
+
+<ChatPrompt q1="Have you ever had a hearing test? An audiologist puts headphones on you, plays a soft beep, and asks 'can you hear that?' — testing at 250, 500, 1000, 2000, 4000 Hz and so on. Here's something to think about: those tones are supposed to test one frequency at a time. But does a recorded beep really contain only one frequency? What would need to be true for that to hold exactly — and what does your answer reveal about the measurement method?" title="Think it through: the audiologist's pure-tone test" />
 
 ---
 
@@ -261,11 +255,9 @@ The demo below shows a simple open-field scenario. Step through the computation 
 
 <ConvolutionDemo />
 
-<ChatPrompt questions={[
-  "In the convolution demo, what happens to the output when two input pulses are close together — how do their echoes interact?",
-  "Room reverberation is modeled as convolution of the dry signal with the room's impulse response. If you want to add reverb to a recording, would you work in the time or frequency domain, and why?",
-  "The convolution theorem says multiplication in time = convolution in frequency. What does this mean for amplitude modulation — why do sidebands appear?"
-]} title="Convolution and filtering" />
+*Dig deeper into convolution with the AI tutor:*
+
+<ChatPrompt q1="In the convolution demo, what happens to the output when two input pulses are close together — how do their echoes interact?" q2="Room reverberation is modeled as convolution of the dry signal with the room's impulse response. If you want to add reverb to a recording, would you work in the time or frequency domain, and why?" q3="The convolution theorem says multiplication in time = convolution in frequency. What does this mean for amplitude modulation — why do sidebands appear?" title="Convolution and filtering" />
 
 ---
 
@@ -283,9 +275,9 @@ A system is **linear** if it satisfies two properties:
 
 **Linearity** = homogeneity and additivity both satisfied. This is also often referred to as **superposition**: Output(k·a + m·b) = k·Output(a) + m·Output(b).
 
-<ChatPrompt questions={[
-  "In everyday life, can you think of a situation where homogeneity is violated? Here is a nudge: if you go to the supermarket and one apple costs $1, but six apples cost $5 — is the 'apple-buying system' homogeneous? Now think of a case where additivity breaks down: if you play Song A and Song B simultaneously through old worn-out speakers, and you hear both songs plus crackling noise that wasn't in either song — which property is violated, and why?"
-]} title="Try this: everyday violations of linearity" />
+*Can you spot these properties breaking down in real life? Try this with the AI tutor:*
+
+<ChatPrompt q1="In everyday life, can you think of a situation where homogeneity is violated? Here is a nudge: if you go to the supermarket and one apple costs $1, but six apples cost $5 — is the 'apple-buying system' homogeneous? Now think of a case where additivity breaks down: if you play Song A and Song B simultaneously through old worn-out speakers, and you hear both songs plus crackling noise that wasn't in either song — which property is violated, and why?" title="Try this: everyday violations of linearity" />
 
 <Callout type="key">
 Linearity is what makes the Fourier approach work for systems: if a system is linear, its response to any signal is fully determined by its response to individual sinusoids — i.e., its frequency response H(f).
@@ -297,9 +289,9 @@ A system is **time-invariant** if its behavior does not change over time. Formal
 
 This means you can measure a system's transfer function once and rely on it to predict future behavior — an essential assumption for engineering design. A room is approximately time-invariant (the same room impulse response applies whether you clap your hands at 2 pm or 3 pm). A human vocal tract is *not* time-invariant — it changes continuously as the speaker articulates.
 
-<ChatPrompt questions={[
-  "Can you think of an everyday system that is NOT time-invariant — one where the same input gives a different output depending on when you apply it? Here is one to get you started: street parking that costs $2 per hour during the day. Is this system time-invariant? What would it mean mathematically if it were — and what breaks down at midnight?"
-]} title="Think it through: time-varying systems in everyday life" />
+*Find a real-world example with the AI tutor:*
+
+<ChatPrompt q1="Can you think of an everyday system that is NOT time-invariant — one where the same input gives a different output depending on when you apply it? Here is one to get you started: street parking that costs $2 per hour during the day. Is this system time-invariant? What would it mean mathematically if it were — and what breaks down at midnight?" title="Think it through: time-varying systems in everyday life" />
 
 ### 3.6.3 Why LTI? Sinusoids and the Fourier Connection
 
@@ -338,9 +330,9 @@ A pure 440 Hz sinusoid input to a nonlinear amplifier might produce output at 44
 **Diagnosing a system:** If you present a sinusoidal input and the output contains the same frequency (possibly scaled and shifted) with no new frequencies, the system is LTI. If new frequencies appear, the system is nonlinear.
 </Callout>
 
-<ChatPrompt questions={[
-  "Did you know the human inner ear is not linear? Researchers exploit this fact to test whether newborns can hear: they play two pure tones (at frequencies f₁ and f₂) into the ear canal, and measure whether the ear itself generates a third tone at 2f₁ − f₂. This is called a distortion product otoacoustic emission (DPOAE). How does this connect to what we just learned about nonlinear distortion and intermodulation products? And why is it so useful that a newborn cannot tell you what they hear?"
-]} title="Fascinating: your inner ear generates its own distortion products" />
+*Before moving to modulation — a surprising application of nonlinearity with the AI tutor:*
+
+<ChatPrompt q1="Did you know the human inner ear is not linear? Researchers exploit this fact to test whether newborns can hear: they play two pure tones (at frequencies f₁ and f₂) into the ear canal, and measure whether the ear itself generates a third tone at 2f₁ − f₂. This is called a distortion product otoacoustic emission (DPOAE). How does this connect to what we just learned about nonlinear distortion and intermodulation products? And why is it so useful that a newborn cannot tell you what they hear?" title="Fascinating: your inner ear generates its own distortion products" />
 
 ---
 
@@ -385,11 +377,9 @@ In speech, both AM and FM are present naturally: the amplitude of voicing varies
 
 <ModulationExplorer />
 
-<ChatPrompt questions={[
-  "In the AM explorer, what happens to the spectrum when you increase the modulation depth? What happens when you change the modulator frequency?",
-  "FM radio (88–108 MHz) uses much wider bandwidth than AM radio. Why does this make FM more resistant to noise?",
-  "Speech naturally contains amplitude modulation (loudness changes) and frequency modulation (pitch changes). Can you think of an example where you use each deliberately to communicate?"
-]} title="Modulation in acoustics and communication" />
+*Explore what you just saw with the AI tutor:*
+
+<ChatPrompt q1="In the AM explorer, what happens to the spectrum when you increase the modulation depth? What happens when you change the modulator frequency?" q2="FM radio (88–108 MHz) uses much wider bandwidth than AM radio. Why does this make FM more resistant to noise?" q3="Speech naturally contains amplitude modulation (loudness changes) and frequency modulation (pitch changes). Can you think of an example where you use each deliberately to communicate?" title="Modulation in acoustics and communication" />
 
 ---
 

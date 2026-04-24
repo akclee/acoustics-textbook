@@ -34,11 +34,7 @@ Sound and light are both waves, but they are fundamentally different in nature:
 
 This is why the famous tagline *"In space, no one can hear you scream"* is scientifically accurate. Sound simply has no medium to propagate through in the vacuum of space.
 
-<ChatPrompt questions={[
-  "If sound needs a medium, how do astronauts communicate in space?",
-  "What makes a longitudinal wave different from a transverse wave?",
-  "Why can we hear an explosion from very far away but not see the shockwave?"
-]} />
+<ChatPrompt q1="If sound needs a medium, how do astronauts communicate in space?" q2="What makes a longitudinal wave different from a transverse wave?" q3="Why can we hear an explosion from very far away but not see the shockwave?" />
 
 ### 1.1.2 A Brief History of Acoustics
 
@@ -119,11 +115,7 @@ The Acoustical Society of America (ASA) formally recognizes 14 technical areas. 
 The professionals who work in acoustics are equally diverse: acousticians, audiologists, audio engineers, architects, biologists, neuroscientists, physicists, electrical engineers, oceanographers, lawyers, linguists, physicians, meteorologists, and more. Acoustics is one of the most genuinely interdisciplinary fields in science.
 </Callout>
 
-<ChatPrompt questions={[
-  "Which of the 14 ASA areas seems most relevant to your own interests, and why?",
-  "How might two different technical areas — say, Noise and Psychological Acoustics — approach the same problem differently?",
-  "Lindsay's Wheel was designed in 1965. What new areas of acoustics might deserve a spot on a modern version?"
-]} title="Reflect on the scope of acoustics" />
+<ChatPrompt q1="Which of the 14 ASA areas seems most relevant to your own interests, and why?" q2="How might two different technical areas — say, Noise and Psychological Acoustics — approach the same problem differently?" q3="Lindsay's Wheel was designed in 1965. What new areas of acoustics might deserve a spot on a modern version?" title="Reflect on the scope of acoustics" />
 
 <div className="my-8 rounded-2xl border border-sky-100 bg-sky-50 px-6 py-5">
   <div className="text-xs font-semibold uppercase tracking-widest text-sky-500 mb-2">🔍 Explore — Acoustics in the Real World</div>
@@ -218,12 +210,7 @@ Use the sliders below to see how amplitude, frequency, and phase each change the
 
 <SineWaveExplorer />
 
-<ChatPrompt questions={[
-  "What happens to the period T annotation as you increase frequency? Why does that make sense?",
-  "If you double the amplitude, does the wave look twice as loud? How would you describe the difference?",
-  "Try setting phase to π radians — how is this wave different from the phase = 0 wave?",
-  "Can you explain why two sinusoids of the same frequency but opposite phase cancel each other out?"
-]} title="Explore sinusoid parameters" />
+<ChatPrompt q1="What happens to the period T annotation as you increase frequency? Why does that make sense?" q2="If you double the amplitude, does the wave look twice as loud? How would you describe the difference?" q3="Try setting phase to π radians — how is this wave different from the phase = 0 wave?" q4="Can you explain why two sinusoids of the same frequency but opposite phase cancel each other out?" title="Explore sinusoid parameters" />
 
 ### 1.2.5 Sound in Space: Speed and Wavelength
 
@@ -259,11 +246,7 @@ This relationship is fundamental. A 1,000 Hz tone in air has a wavelength of abo
 Wavelength matters enormously in acoustics. When a sound wave encounters an object smaller than its wavelength, it tends to bend around it (diffraction). When the object is larger, it casts an acoustic "shadow." This is why low-frequency sounds travel around walls easily while high-frequency sounds are blocked.
 </Callout>
 
-<ChatPrompt questions={[
-  "Sound travels at 343 m/s in air and ~1,480 m/s in water. What does this mean for the wavelength of a 1,000 Hz tone in each medium?",
-  "Why does sound bend around a doorway but light doesn't? What does wavelength have to do with it?",
-  "If the temperature rises on a summer day, how would that affect the speed of sound and the wavelength of a 440 Hz tone?"
-]} title="Speed and wavelength" />
+<ChatPrompt q1="Sound travels at 343 m/s in air and ~1,480 m/s in water. What does this mean for the wavelength of a 1,000 Hz tone in each medium?" q2="Why does sound bend around a doorway but light doesn't? What does wavelength have to do with it?" q3="If the temperature rises on a summer day, how would that affect the speed of sound and the wavelength of a 440 Hz tone?" title="Speed and wavelength" />
 
 ### 1.2.6 Waveform and Spectrum: Two Ways to See a Sound
 
@@ -332,12 +315,7 @@ The type of signal has a direct consequence for its spectrum:
 - **Periodic sounds** → **line spectrum**: energy only at the fundamental and its harmonics — discrete, isolated spikes
 - **Aperiodic sounds** → **continuous spectrum**: energy spread across all frequencies, forming a smooth curve
 
-<ChatPrompt questions={[
-  "A guitar string vibrates at 440 Hz. What frequencies would you expect to see in its spectrum?",
-  "What is the 'missing fundamental' and why does it matter for music or hearing aids?",
-  "How is white noise different from pink noise in its spectrum? Which one sounds more natural and why?",
-  "Why do speech vowels have a line spectrum but consonants like /s/ or /sh/ have a continuous spectrum?"
-]} title="Complex sounds and spectra" />
+<ChatPrompt q1="A guitar string vibrates at 440 Hz. What frequencies would you expect to see in its spectrum?" q2="What is the 'missing fundamental' and why does it matter for music or hearing aids?" q3="How is white noise different from pink noise in its spectrum? Which one sounds more natural and why?" q4="Why do speech vowels have a line spectrum but consonants like /s/ or /sh/ have a continuous spectrum?" title="Complex sounds and spectra" />
 
 ### 1.2.9 Time-Frequency Duality
 
@@ -377,11 +355,7 @@ This **source-filter model** is fundamental to understanding speech acoustics, a
 We will return to the source-filter model and convolution in detail in Chapter 3 (Signal Analysis) and Chapter 5 (Hearing & Speech). For now, the key insight is that the vocal tract does not change the source frequencies — it selectively amplifies and attenuates them.
 </Callout>
 
-<ChatPrompt questions={[
-  "If the vocal folds produce harmonics at 100, 200, 300 Hz... and the vocal tract amplifies around 500 Hz, which harmonics get boosted?",
-  "How does the source-filter model explain why different people saying the same vowel sound similar, even though their voices have different pitches?",
-  "What changes in the source-filter chain when you whisper compared to speaking normally?"
-]} title="The speech and hearing chain" />
+<ChatPrompt q1="If the vocal folds produce harmonics at 100, 200, 300 Hz... and the vocal tract amplifies around 500 Hz, which harmonics get boosted?" q2="How does the source-filter model explain why different people saying the same vowel sound similar, even though their voices have different pitches?" q3="What changes in the source-filter chain when you whisper compared to speaking normally?" title="The speech and hearing chain" />
 
 ## Summary
 
