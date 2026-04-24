@@ -22,7 +22,13 @@ import ActivitySoundwalk from '@/components/ActivitySoundwalk'
 import ActivityProfessions from '@/components/ActivityProfessions'
 import ChapterQuiz from '@/components/ChapterQuiz'
 import Chapter01Quiz from '@/components/Chapter01Quiz'
+import Chapter03Quiz from '@/components/Chapter03Quiz'
 import PodcastPlayer from '@/components/PodcastPlayer'
+import FilterExplorer from '@/components/FilterExplorer'
+import DampingExplorer from '@/components/DampingExplorer'
+import ConvolutionDemo from '@/components/ConvolutionDemo'
+import ModulationExplorer from '@/components/ModulationExplorer'
+import WindowingDemo from '@/components/WindowingDemo'
 
 // ─── Static MDX components ───────────────────────────────────────────────────
 
@@ -65,6 +71,10 @@ const components = {
     </div>
   ),
 
+  // ── Inline HTML pass-throughs (explicit registration prevents hydration mismatches) ──
+  sub: ({ children }: { children: React.ReactNode }) => <sub>{children}</sub>,
+  sup: ({ children }: { children: React.ReactNode }) => <sup>{children}</sup>,
+
   // ── Interactive / diagram components ─────────────────────────────────────
   ChatPrompt,
   SineWaveExplorer,
@@ -78,7 +88,13 @@ const components = {
   ActivityProfessions,
   ChapterQuiz,
   Chapter01Quiz,
+  Chapter03Quiz,
   PodcastPlayer,
+  FilterExplorer,
+  DampingExplorer,
+  ConvolutionDemo,
+  ModulationExplorer,
+  WindowingDemo,
 }
 
 // ─── Page ────────────────────────────────────────────────────────────────────

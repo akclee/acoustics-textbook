@@ -4,7 +4,7 @@
 // Interactive SVG sine wave visualizer with sliders for amplitude, frequency, and phase.
 // Usage in MDX:  <SineWaveExplorer />
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 const W = 600
 const H = 200
@@ -54,6 +54,9 @@ function Slider({ label, value, min, max, step, display, onChange }: SliderProps
 }
 
 export default function SineWaveExplorer() {
+  const [mounted, setMounted] = useState(false)
+  useEffect(() => setMounted(true), [])
+
   const [A, setA] = useState(1.0)      // amplitude (normalized)
   const [f, setF] = useState(1.0)      // relative frequency multiplier
   const [phi, setPhi] = useState(0.0)  // phase offset in radians
@@ -62,6 +65,15 @@ export default function SineWaveExplorer() {
 
   // Approximate period annotation: width / (f * 2) in SVG units
   const periodPx = W / (f * 2)
+
+  if (!mounted) {
+    return (
+      <div className="my-8 rounded-2xl border border-slate-200 bg-slate-50 p-6
+                      flex items-center justify-center" style={{ minHeight: 260 }}>
+        <span className="text-sm text-slate-400">Loading sine wave explorer…</span>
+      </div>
+    )
+  }
 
   return (
     <div className="my-8 rounded-2xl border border-slate-200 bg-slate-50 p-6">

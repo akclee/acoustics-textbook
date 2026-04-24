@@ -1,0 +1,417 @@
+---
+title: Signal Analysis
+number: 3
+description: Filters, resonance, convolution, and the mathematics of how systems shape sound.
+---
+
+In Chapter 1 we built a vocabulary for describing individual sounds — sinusoids, amplitude, frequency, phase, and spectra. In Chapter 2 we explored how vibrating objects produce sound. Now we turn to the *systems* that sound travels through: What does a wall do to the frequencies in a signal? How does a room imprint its own character on every sound that occurs inside it? Why does a telephone sound different from a concert hall? These questions all reduce to one idea — **filtering** — and a powerful mathematical framework for describing it.
+
+<PodcastPlayer
+  src="/audio/The_Hidden_Physics_of_Sound_Waves.m4a"
+  title="Signal Analysis Overview"
+  position="top"
+/>
+
+## 3.1 What Is a Filter?
+
+### 3.1.1 Etymology and Definition
+
+The word *filter* comes from Medieval Latin *filtrum* — a piece of felt used to strain liquids. In its original physical sense, a filter is any porous device for removing impurities from a liquid or gas passed through it.
+
+In the everyday world, filters surround us: air filters, oil filters, coffee filters, spam filters. What do they all share? They **selectively pass some things while blocking others**, based on some property of what is flowing through.
+
+### 3.1.2 A Physical Analogy
+
+Imagine you have a collection of balls with diameters of 50 cm, 10 cm, and 1 cm. You want to keep only the 10 cm balls. A single sieve with 20 cm holes passes the 10 cm and 1 cm balls but blocks the 50 cm ones — that is a **low-pass** operation. To also block the 1 cm balls, you add a second sieve with 5 cm holes. Together they form a **band-pass** filter that isolates only the 10 cm balls.
+
+This physical intuition maps directly to frequency filtering:
+
+- **Ball diameter** → frequency of a sinusoidal component
+- **Sieve hole size** → cutoff frequency
+- **Two sieves in series** → bandpass filter (one cutoff above, one below the target range)
+
+The region a filter passes is called the **passband**; the region it blocks is the **stopband**.
+
+<Callout type="key">
+In signal processing, a **filter** is any system that selectively amplifies or attenuates signal energy at different frequencies. The property being "sieved" is frequency content.
+</Callout>
+
+<ChatPrompt questions={[
+  "Before we look at the formal filter types, let's think about the physical world. Can you name a physical filter you've encountered in everyday life — not in electronics, but something you can hold or see? What does it pass, and what does it block? Let's see how many different kinds we can come up with together."
+]} title="Activity: Physical filters around you" />
+
+### 3.1.3 Types of Filters
+
+Four fundamental filter types cover most signal-processing needs:
+
+**Low-pass filter (LPF):** Passes frequencies below a cutoff frequency f<sub>c</sub>; attenuates frequencies above. A wall between two rooms acts as a rough low-pass filter — only low-frequency bass thumps travel through.
+
+**High-pass filter (HPF):** Passes frequencies above f<sub>c</sub>; attenuates those below. The classic telephone cuts off below ~300 Hz, removing low rumble and power-line hum.
+
+---
+
+<ChatPrompt questions={[
+  "A telephone cuts off below 300 Hz, yet a typical male speaking voice has a fundamental pitch around 100–150 Hz — well below that cutoff. So how can you still hear the pitch of someone's voice on a phone call?"
+]} title="Think it through: the telephone and pitch" />
+
+---
+
+**Band-pass filter (BPF):** Passes frequencies between two cutoffs (f<sub>c1</sub> and f<sub>c2</sub>); attenuates everything outside. The traditional public switched telephone network (PSTN) passes 300–3,400 Hz — enough for speech intelligibility but not music fidelity.
+
+**Band-stop filter (BSF / Notch filter):** Rejects a band of frequencies; passes everything else. A 60 Hz notch filter removes electrical hum from audio recordings without affecting other content.
+
+<Callout type="info">
+**Bandwidth** (BW) of a filter is the width of its passband in Hz. For a band-pass filter: BW = f<sub>c2</sub> − f<sub>c1</sub>. The **center frequency** is the midpoint: f<sub>center</sub> = (f<sub>c1</sub> + f<sub>c2</sub>) / 2.
+</Callout>
+
+<ChatPrompt questions={[
+  "If the telephone passes 300–3,400 Hz as a bandpass filter, what speech sounds are most affected by this cutoff?",
+  "Why does sound through a wall sound 'muffled' — what type of filter does a wall behave like?",
+  "A notch filter removes exactly 60 Hz from a recording. What is its bandwidth if it spans 58–62 Hz?"
+]} title="Filters in everyday acoustics" />
+
+### 3.1.4 Interactive: Explore Filter Responses
+
+Adjust the filter type and cutoff frequencies below to see how each filter shapes a signal's frequency content.
+
+<FilterExplorer />
+
+### 3.1.5 Combining Filters and the Frequency Response
+
+Filters can be **cascaded** (placed in series): the output of one becomes the input of the next. The result is a filter whose response is the product of the individual responses at each frequency. Two cascaded filters with cutoffs at 5 Hz and 200 Hz, for example, produce a band-pass response spanning 5–200 Hz.
+
+More generally, any system can be described by its **frequency response** — the gain it applies to each frequency:
+
+<Callout type="key">
+The frequency response of a system specifies, for every input frequency, the **amplitude gain** (how much it amplifies or attenuates) and the **phase shift** (how much it delays that frequency). Together these fully characterize the system's linear behavior. However, we often only care about the power of the frequency response, and the phase shift becomes not as relevant.
+</Callout>
+
+<ChatPrompt questions={[
+  "If you're comfortable with complex numbers: the frequency response H(f) is actually a complex-valued function — H(f) = |H(f)| · e^(jφ(f)). The magnitude |H(f)| is the amplitude gain, and φ(f) is the phase shift at each frequency. Can you explain what it means geometrically for H(f) to be a point in the complex plane rather than a simple real number? Why does this representation capture both gain and phase in one expression?"
+]} title="Going deeper: frequency response as complex gain" />
+
+Filtering, mathematically, is **multiplication in the frequency domain**: if X(f) is the spectrum of the input and H(f) is the frequency response of the filter, the output spectrum is:
+
+<Equation label="Filtering in the frequency domain">Y(f) = H(f) · X(f)</Equation>
+
+This deceptively simple equation encodes the entire filtering operation. We will see its time-domain counterpart — convolution — in Section 3.5.
+
+---
+
+## 3.2 Resonance and Damping
+
+### 3.2.1 Natural Frequency and Resonance
+
+Every elastic physical system — a string, a room, a vocal tract, a building — has one or more **natural frequencies** at which it "prefers" to vibrate. When energy is added at or near that frequency, the system responds strongly; at other frequencies, it responds weakly.
+
+This frequency-selective response is called **resonance**. A tuning fork struck against a surface vibrates almost exclusively at its stamped frequency because that is the natural frequency of its particular length and mass. Force the fork to vibrate at a different frequency and the response is poor.
+
+Resonant systems are therefore natural **band-pass filters** — they respond strongly near their resonant frequency and attenuate frequencies far from it.
+
+### 3.2.2 Damping
+
+In a mathematical sinusoid, oscillation continues forever with unchanged amplitude. In the real world, energy is always lost — to air resistance, internal friction, or structural loss — and the amplitude **decays** over time. This energy dissipation is called **damping**.
+
+The rate of decay is characterized by the **time constant** τ: after one time constant, the amplitude has fallen to 1/e ≈ 37% of its original value. A heavily damped system (large damping) decays quickly; a lightly damped system rings on for a long time.
+
+<Callout type="key">
+**Time-frequency duality (damping version):** More damping → faster decay in time → *broader* resonance peak in frequency. Less damping → slower decay → *narrower* peak. A perfectly lossless system would ring forever and have an infinitely narrow spectral spike.
+</Callout>
+
+The **Q factor** (quality factor) quantifies this trade-off:
+
+<Equation label="Q factor relates resonant frequency to bandwidth">Q = f₀ / BW</Equation>
+
+A high-Q system has a narrow bandwidth (lightly damped, rings a long time). A low-Q system has a broad bandwidth (heavily damped, decays quickly). The Q factor appears throughout acoustics: the Q of a room relates to its reverberation time; the Q of a vocal tract formant shapes vowel quality.
+
+### 3.2.3 Interactive: Damping and Resonance
+
+Drag the Q slider to see how damping simultaneously affects the time-domain ring-down and the frequency-domain peak width.
+
+<DampingExplorer />
+
+<ChatPrompt questions={[
+  "A tuning fork has Q ≈ 1000. What does that tell you about how long it rings and how narrow its frequency peak is?",
+  "Noise-canceling headphones use resonant cavities tuned to specific frequencies. Would you want high-Q or low-Q resonators, and why?",
+  "How does the Q factor relate to the reverberation time of a concert hall?"
+]} title="Resonance and the Q factor" />
+
+---
+
+## 3.3 Time-Frequency Duality
+
+The Q factor example above reveals a deep principle: **time and frequency are two sides of the same coin**, and you cannot have complete freedom in both simultaneously.
+
+### 3.3.1 The Fundamental Trade-off
+
+<Callout type="key">
+**Time-frequency duality:** A signal cannot be simultaneously localized in both time and frequency. Narrowing its frequency content requires spreading it out in time; concentrating it in time forces its frequency content to spread.
+</Callout>
+
+Two extreme cases illustrate this:
+
+**Case 1 — Infinite sinusoid:** A pure sine wave that lasts forever has a perfectly defined frequency (a single line in the spectrum). But it is infinitely extended in time — you cannot say "the sound occurred at t = 2 s."
+
+**Case 2 — Ideal impulse:** A perfectly instantaneous click (a Dirac delta) is perfectly localized in time (t = 0, and nowhere else). But its spectrum contains energy at *all* frequencies equally — it has infinite bandwidth.
+
+Real-world signals lie between these extremes. A note played on a piano lasts a finite time and therefore has some frequency spread around its fundamental. A very brief consonant like /t/ has such a short duration that its spectrum is nearly flat — it contains many frequency components. A sustained vowel /ɑː/ lasts longer and shows a clearer spectral structure with distinct formant peaks.
+
+### 3.3.2 Windowing and Transient Distortion
+
+Time-frequency duality has a practical consequence for signal analysis. When you record a signal, you inevitably capture only a **finite window** of time. Abruptly starting and stopping a signal (even a pure sinusoid) is equivalent to multiplying it by a rectangular window — which, in the frequency domain, **convolves** the spectrum with the Fourier transform of the window.
+
+The result is **spectral splatter**: energy from a single frequency "leaks" into neighboring frequencies. This is not a recording error — it is a fundamental consequence of time-frequency duality. Signal analysts use carefully shaped windows (Hann, Hamming, Blackman) to reduce splatter at the cost of slightly broadening spectral peaks.
+
+<WindowingDemo />
+
+<Callout type="tip">
+Every time you hear a sharp click, pop, or transient in audio, that sound contains energy spread across many frequencies — not because the source produced many frequencies, but because the sudden onset is essentially a brief impulse, and impulses have flat spectra.
+</Callout>
+
+---
+
+## 3.4 System Tuning and the Transfer Function
+
+### 3.4.1 Transfer Function
+
+The **transfer function** H(f) is the complete mathematical description of a system's frequency response — it specifies both amplitude gain and phase shift at every frequency. Measuring the transfer function is the standard way to characterize any acoustic system, from a microphone to a concert hall.
+
+Three practical methods exist for measuring a transfer function:
+
+1. **Swept-tone method:** Present sinusoids of varying frequency one at a time; measure output level at each frequency.
+2. **Noise method:** Present broadband noise; compute the spectrum of the output. (Quick but noisy estimate.)
+3. **Impulse method:** Present an impulse (or a signal designed to approximate one); record the impulse response and take its Fourier transform.
+
+<Equation label="Transfer function from impulse response">H(f) = 𝓕&#123;h(t)&#125;</Equation>
+
+<ChatPrompt questions={[
+  "The goal of all three methods is the same: find the system's gain at every frequency. The swept-tone method is the most obvious — you test one frequency at a time. But why does playing random noise also reveal the full transfer function? And perhaps most surprisingly: why does a single brief impulse — just one click — contain enough information to characterise the entire system across all frequencies?"
+]} title="Think it through: why do these measurement methods work?" />
+
+### 3.4.2 Narrowband vs. Broadband Systems
+
+Resonant systems fall on a spectrum from **narrowband** (high-Q) to **broadband** (low-Q):
+
+**Narrowband / highly resonant systems** (high Q):
+- Sharply tuned — respond strongly only near f₀
+- Difficult to drive at other frequencies
+- Slow to respond to changes (long ring-down)
+- Example: a Helmholtz resonator (e.g., blowing across a bottle opening)
+
+**Broadband / weakly resonant systems** (low Q):
+- Broadly tuned — respond across a wide frequency range
+- Easy to drive at many frequencies
+- Can follow rapid changes
+- Example: a loudspeaker designed for flat response across the audible range
+
+### 3.4.3 Real-World Examples
+
+The transfer-function framework applies everywhere in acoustics:
+
+**Sound through a wall:** A wall acts as a low-pass filter — low frequencies (bass) penetrate more readily than high frequencies, because the wall's mass impedes high-frequency pressure changes more effectively. The transfer function is complex, with resonances of the wall structure creating peaks and dips.
+
+**Telephone:** The traditional PSTN telephone system has a band-pass transfer function: 300–3,400 Hz. Most speech intelligibility cues survive this band, but music quality does not. Wideband ("HD Voice") telephony extends this to approximately 50–7,000 Hz.
+
+**Vowels:** The vocal tract is a resonant tube whose shape is controlled by tongue and jaw movements. Each configuration produces a distinct transfer function with peaks at the **formant frequencies** (F1, F2, F3...). The source (vocal fold vibration) is filtered by this transfer function to produce vowel sounds.
+
+**The Tacoma Narrows Bridge (1940):** A catastrophic resonance failure. Wind produced a broadband input; the bridge structure had a prominent resonant frequency at about 0.2 Hz. The wind continuously added energy at this frequency until the amplitude exceeded the structural limit. The failure illustrates why engineers must identify and either avoid or damp prominent resonances.
+
+<ChatPrompt questions={[
+  "The vocal tract acts as a filter on the vocal fold source. What changes when you shift from the vowel /ah/ to /ee/ — the source, the filter, or both?",
+  "Why does 'HD Voice' telephony sound noticeably clearer than standard phone calls, even though you can already understand speech on a normal call?",
+  "How would you measure the transfer function of a concert hall using the impulse method?"
+]} title="Transfer functions in the real world" />
+
+<ChatPrompt questions={[
+  "Have you ever had a hearing test? An audiologist puts headphones on you, plays a soft beep, and asks 'can you hear that?' — testing at 250, 500, 1000, 2000, 4000 Hz and so on. Here's something to think about: those tones are supposed to test one frequency at a time. But does a recorded beep really contain only one frequency? What would need to be true for that to hold exactly — and what does your answer reveal about the measurement method?"
+]} title="Think it through: the audiologist's pure-tone test" />
+
+---
+
+## 3.5 Convolution
+
+### 3.5.1 Intuition: The Open Field
+
+Imagine you are standing in an open field. You shout "HA!" — the sound travels directly to a microphone 100 feet away. Now imagine there is a distant wall behind the microphone. Your shout arrives at the microphone twice: once directly, and once as a slightly delayed, quieter reflection — an echo.
+
+The microphone records: "HA! ... ha."
+
+Now shout two words: "HA! ... ha." The microphone records each word *with its echo*. If the echoes overlap with the next direct sound, they interact. The system (the field with its wall) has applied the same "echo pattern" to every sound you produce. That echo pattern is the system's **impulse response** h(t).
+
+The output signal y(t) is the input signal x(t) processed through h(t). Computing this mathematically is called **convolution**, written y = x ∗ h.
+
+### 3.5.2 Convolution in Time = Multiplication in Frequency
+
+Convolution in the time domain is computationally intensive — each output sample requires summing many products. But there is an elegant shortcut:
+
+<Callout type="key">
+**Convolution theorem:** Convolution in the time domain is equivalent to pointwise multiplication in the frequency domain (and vice versa).
+
+- To obtain the output spectrum: Y(f) = H(f) · X(f)  (multiply)
+- To obtain the output waveform: y(t) = h(t) ∗ x(t)  (convolve)
+</Callout>
+
+This is why the frequency-domain perspective is so powerful: the complex operation of convolution in time becomes simple multiplication in frequency. Filtering *is* multiplication of spectra.
+
+The reverse is also true: **multiplication in time corresponds to convolution in frequency**. Amplitude modulation — multiplying a carrier by a modulator — produces sidebands in the spectrum because time-domain multiplication creates frequency-domain convolution. This is explored in depth in Section 3.8.
+
+### 3.5.3 Interactive: Convolution Step-Through
+
+The demo below shows a simple open-field scenario. Step through the computation to see how each output sample is built from products of the impulse response and the input.
+
+<ConvolutionDemo />
+
+<ChatPrompt questions={[
+  "In the convolution demo, what happens to the output when two input pulses are close together — how do their echoes interact?",
+  "Room reverberation is modeled as convolution of the dry signal with the room's impulse response. If you want to add reverb to a recording, would you work in the time or frequency domain, and why?",
+  "The convolution theorem says multiplication in time = convolution in frequency. What does this mean for amplitude modulation — why do sidebands appear?"
+]} title="Convolution and filtering" />
+
+---
+
+## 3.6 Linear Time-Invariant (LTI) Systems
+
+So far we have freely applied the filtering and convolution framework without asking what kind of system it applies to. Not every system obeys Y(f) = H(f)·X(f). The class of systems for which this holds exactly is called **Linear Time-Invariant (LTI) systems**.
+
+### 3.6.1 Linearity: Homogeneity and Additivity
+
+A system is **linear** if it satisfies two properties:
+
+**Homogeneity** (scaling): If you double the input, the output doubles. More precisely: Output(k · x) = k · Output(x). This means the system responds proportionally — you only need to measure the response at one input level to predict it at any other level. Crucially, a sinusoidal input produces a sinusoidal output at the *same frequency* (possibly amplified and/or phase-shifted, but no new frequencies created).
+
+**Additivity:** The system's response to a sum of inputs equals the sum of the individual responses. Output(a + b) = Output(a) + Output(b). This is enormously powerful: because any signal can be decomposed into sinusoids (Fourier), and because the system responds to each sinusoid independently, the total response is just the sum of the individual sinusoidal responses.
+
+**Linearity** = homogeneity and additivity both satisfied. This is also often referred to as **superposition**: Output(k·a + m·b) = k·Output(a) + m·Output(b).
+
+<ChatPrompt questions={[
+  "In everyday life, can you think of a situation where homogeneity is violated? Here is a nudge: if you go to the supermarket and one apple costs $1, but six apples cost $5 — is the 'apple-buying system' homogeneous? Now think of a case where additivity breaks down: if you play Song A and Song B simultaneously through old worn-out speakers, and you hear both songs plus crackling noise that wasn't in either song — which property is violated, and why?"
+]} title="Try this: everyday violations of linearity" />
+
+<Callout type="key">
+Linearity is what makes the Fourier approach work for systems: if a system is linear, its response to any signal is fully determined by its response to individual sinusoids — i.e., its frequency response H(f).
+</Callout>
+
+### 3.6.2 Time-Invariance
+
+A system is **time-invariant** if its behavior does not change over time. Formally: if input x(t) produces output y(t), then the delayed input x(t − τ) produces the delayed output y(t − τ). The system responds the same way regardless of *when* the input arrives.
+
+This means you can measure a system's transfer function once and rely on it to predict future behavior — an essential assumption for engineering design. A room is approximately time-invariant (the same room impulse response applies whether you clap your hands at 2 pm or 3 pm). A human vocal tract is *not* time-invariant — it changes continuously as the speaker articulates.
+
+<ChatPrompt questions={[
+  "Can you think of an everyday system that is NOT time-invariant — one where the same input gives a different output depending on when you apply it? Here is one to get you started: street parking that costs $2 per hour during the day. Is this system time-invariant? What would it mean mathematically if it were — and what breaks down at midnight?"
+]} title="Think it through: time-varying systems in everyday life" />
+
+### 3.6.3 Why LTI? Sinusoids and the Fourier Connection
+
+<Callout type="key">
+**Why LTI systems matter:**
+1. Sinusoids in → sinusoids out (same frequency, only amplitude and phase change)
+2. Any signal can be expressed as a sum of sinusoids (Fourier analysis)
+3. Therefore, an LTI system's response to *any* input is fully described by its frequency response H(f)
+</Callout>
+
+Most acoustic systems of practical interest are well-approximated as LTI: rooms, filters, microphones, loudspeakers (over limited amplitude ranges), and hearing aids. Notable non-LTI behaviors include saturation (a microphone clipping at very high levels), compression (a dynamics processor), and any system whose properties change over time.
+
+---
+
+## 3.7 Distortion
+
+When a system is not perfectly LTI, it introduces **distortion** — changes to the signal that go beyond the expected amplitude and phase shifts.
+
+### 3.7.1 Frequency Distortion
+
+**Frequency distortion** occurs when the system's transfer function is not flat — it applies different gains to different frequencies. Technically, this is still LTI behavior (no new frequencies are created), and it is sometimes called *linear distortion*. Filtering is frequency distortion, but distortion is not always the intent: a loudspeaker with a non-flat frequency response introduces unintended frequency distortion.
+
+### 3.7.2 Transient Distortion
+
+**Transient distortion** arises from time-frequency duality. Any system with a finite bandwidth cannot respond instantaneously to changes — it takes time to "ring up" to a new signal. A narrowband system (high Q) responds slowly; a broadband system responds quickly.
+
+A related phenomenon is **windowing distortion** (spectral splatter): abruptly starting or stopping a signal introduces frequency components that were not in the original signal. This is why audio engineers use fade-ins and fade-outs rather than abrupt cuts, and why analysis windows are carefully shaped.
+
+### 3.7.3 Amplitude (Nonlinear) Distortion
+
+**Amplitude distortion** occurs when the system's output is a nonlinear function of its input — it violates homogeneity. The clearest symptom is the appearance of **new frequency components** (harmonics and intermodulation products) that were not present in the input.
+
+A pure 440 Hz sinusoid input to a nonlinear amplifier might produce output at 440, 880, 1320 Hz (second, third harmonics) and, if two tones are present, at their sum and difference frequencies. Nonlinear distortion is generally undesirable in audio equipment but is exploited intentionally in guitar amplifier "overdrive" and in some musical synthesis techniques.
+
+<Callout type="info">
+**Diagnosing a system:** If you present a sinusoidal input and the output contains the same frequency (possibly scaled and shifted) with no new frequencies, the system is LTI. If new frequencies appear, the system is nonlinear.
+</Callout>
+
+<ChatPrompt questions={[
+  "Did you know the human inner ear is not linear? Researchers exploit this fact to test whether newborns can hear: they play two pure tones (at frequencies f₁ and f₂) into the ear canal, and measure whether the ear itself generates a third tone at 2f₁ − f₂. This is called a distortion product otoacoustic emission (DPOAE). How does this connect to what we just learned about nonlinear distortion and intermodulation products? And why is it so useful that a newborn cannot tell you what they hear?"
+]} title="Fascinating: your inner ear generates its own distortion products" />
+
+---
+
+## 3.8 Modulation
+
+### 3.8.1 What Is Modulation?
+
+The word *modulation* comes from the Latin *modulari*, meaning "to regulate." In acoustics and signal processing, modulation refers to **changing one or more parameters of a carrier signal over time** — varying the amplitude, frequency, or phase in a controlled way.
+
+The general sinusoid written as:
+
+<Equation label="General modulated sinusoid">x(t) = A(t) · sin[2πf(t) · t + φ(t)]</Equation>
+
+allows each of the three parameters to vary with time. When only one parameter changes, we get the three classical modulation types.
+
+### 3.8.2 Amplitude Modulation (AM)
+
+In **amplitude modulation**, the amplitude A(t) varies with a modulating signal m(t):
+
+<Equation label="AM signal">x(t) = (1 + m · cos 2πf<sub>m</sub>t) · cos 2πf<sub>c</sub>t</Equation>
+
+Here f<sub>c</sub> is the **carrier frequency** and f<sub>m</sub> is the **modulating frequency**. The parameter m is the modulation depth (0 = unmodulated; 1 = full modulation).
+
+By the convolution theorem, multiplying in time is convolution in frequency. This produces three spectral lines:
+- The carrier at f<sub>c</sub> (unchanged)
+- An **upper sideband** at f<sub>c</sub> + f<sub>m</sub>
+- A **lower sideband** at f<sub>c</sub> − f<sub>m</sub>
+
+This is exactly why AM radio works: the audio signal (m(t)) is multiplied with a high-frequency carrier to shift it up to a broadcast frequency, and the receiver filters and demodulates to recover the audio.
+
+### 3.8.3 Frequency Modulation (FM)
+
+In **frequency modulation**, the instantaneous frequency varies around the carrier:
+
+<Equation label="FM signal">x(t) = cos(2πf<sub>c</sub>t + β · sin 2πf<sub>m</sub>t)</Equation>
+
+Here β is the **modulation index** (peak frequency deviation ÷ modulator frequency). FM radio uses β >> 1 (wideband FM), which spreads energy across many sidebands and provides better noise immunity than AM at the cost of more bandwidth.
+
+In speech, both AM and FM are present naturally: the amplitude of voicing varies with prosody (AM), and the pitch of the voice varies (FM on the source).
+
+### 3.8.4 Interactive: Modulation Explorer
+
+<ModulationExplorer />
+
+<ChatPrompt questions={[
+  "In the AM explorer, what happens to the spectrum when you increase the modulation depth? What happens when you change the modulator frequency?",
+  "FM radio (88–108 MHz) uses much wider bandwidth than AM radio. Why does this make FM more resistant to noise?",
+  "Speech naturally contains amplitude modulation (loudness changes) and frequency modulation (pitch changes). Can you think of an example where you use each deliberately to communicate?"
+]} title="Modulation in acoustics and communication" />
+
+---
+
+## Summary
+
+This chapter developed the systems perspective on acoustics:
+
+- A **filter** selectively amplifies or attenuates frequencies. The four types — low-pass, high-pass, band-pass, and band-stop — are described by their cutoff frequencies, bandwidth, and center frequency.
+- Any system is characterized by its **transfer function H(f)** — the frequency response that fully describes how it shapes input signals.
+- **Resonance** occurs when a system responds strongly near its natural frequency. The **Q factor** relates resonant frequency to bandwidth: high Q = narrow peak, slow decay; low Q = broad peak, fast decay.
+- **Time-frequency duality** is fundamental: signals cannot be simultaneously concentrated in time and in frequency. Finite duration implies finite bandwidth and vice versa.
+- **Convolution** in the time domain corresponds to multiplication in the frequency domain. The output of a system is the convolution of the input with the system's impulse response: y(t) = x(t) ∗ h(t), or equivalently Y(f) = X(f) · H(f).
+- **LTI systems** satisfy linearity (homogeneity + additivity) and time-invariance. For LTI systems, the frequency-domain approach is exact and powerful.
+- **Distortion** occurs when a system departs from ideal LTI behavior: frequency distortion (non-flat response), transient distortion (time-frequency duality effects), and amplitude distortion (nonlinearity, introducing new frequencies).
+- **Modulation** — AM, FM, PM — is the intentional variation of a signal parameter. Multiplying in time corresponds to convolution in frequency, producing sidebands.
+
+With these tools, we are ready to explore how the auditory system performs its own biological signal analysis in Chapter 5, and how architectural acoustics shapes the transfer function of physical spaces in Chapter 6.
+
+<Chapter03Quiz />
+
+<PodcastPlayer
+  src="/audio/The_Hidden_Physics_of_Sound_Waves.m4a"
+  title="Signal Analysis Overview"
+  position="bottom"
+/>
