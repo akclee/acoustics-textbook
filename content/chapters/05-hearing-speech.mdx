@@ -1,14 +1,14 @@
 ---
 title: Hearing and Speech
 number: 5
-description: From the mechanics of the ear to the perception of speech — how we turn pressure waves into meaning.
+description: From ear mechanics to speech perception
 ---
 
 Sound only matters if something receives it. The ear is one of the most elegant transducers in nature — it converts pressure variations in air into neural signals with extraordinary speed, sensitivity, and frequency resolution. And speech is one of the most remarkable signals it processes: structured, variable, context-dependent, and decoded with an ease that belies the underlying complexity. This chapter traces the full path from sound wave to meaning.
 
 <PodcastPlayer
-  src="/audio/The_Hidden_Physics_of_Sound_Waves.m4a"
-  title="Hearing and Speech Overview"
+  src="/audio/From_air_vibrations_to_human_speech.m4a"
+  title="From air vibrations to human speech"
   position="top"
 />
 
@@ -16,14 +16,23 @@ Sound only matters if something receives it. The ear is one of the most elegant 
 
 ## 5.1 The Auditory System
 
+<figure className="my-8">
+  <img
+    src="/images/Anatomy_of_the_Human_Ear.svg"
+    alt="Labelled cross-section of the human ear showing the outer ear (pinna and ear canal), middle ear (tympanic membrane and ossicles), and inner ear (cochlea and auditory nerve)"
+    className="rounded-xl border border-slate-200 shadow-sm mx-auto w-full max-w-2xl"
+  />
+  <figcaption className="text-center text-sm text-slate-500 mt-3">Cross-section of the human ear. Source: <a href="https://commons.wikimedia.org/wiki/File:Anatomy_of_the_Human_Ear.svg" target="_blank" rel="noopener noreferrer" className="underline hover:text-slate-700">Wikimedia Commons</a>.</figcaption>
+</figure>
+
 ### 5.1.1 The Outer Ear
 
 The journey from sound to perception begins at the **pinna** — the visible, cartilaginous flap of the outer ear. Despite looking passive, the pinna is acoustically active: its complex ridges and folds selectively amplify frequencies between roughly 2 and 4 kHz, a range critical for speech intelligibility. This amplification is called the **outer ear resonance**, and it contributes up to 15–20 dB of gain in that frequency range.
 
-The outer ear also provides the first cues for **sound localisation in elevation**. Sounds arriving from different heights reflect off the pinna's convolutions in subtly different ways, creating direction-dependent spectral patterns (the **Head-Related Transfer Function**, or HRTF) that allow the brain to estimate whether a sound is above or below.
+The outer ear also provides the first cues for **sound localization in elevation**. Sounds arriving from different heights reflect off the pinna's convolutions in subtly different ways, creating direction-dependent spectral patterns (the **Head-Related Transfer Function**, or HRTF) that allow the brain to estimate whether a sound is above or below.
 
 <Callout type="key">
-The outer ear is not just a passive sound collector. It amplifies critical speech frequencies and encodes elevation information into the signal's spectrum before it even enters the ear canal.
+The outer ear is not just a passive sound collector. It encodes elevation information into the signal's spectrum before it even enters the ear canal.
 </Callout>
 
 ### 5.1.2 The Middle Ear: Impedance Matching
@@ -62,9 +71,18 @@ Helmholtz first proposed tonotopy in 1857; Georg von Békésy confirmed it exper
 
 ### 5.1.4 Hair Cells and the Auditory Nerve
 
+<figure className="my-8">
+  <img
+    src="/images/organ-of-corti.png"
+    alt="Cross-section of the Organ of Corti showing inner hair cells, outer hair cells, tectorial membrane, basilar membrane, spiral ganglion, and cochlear nerve"
+    className="rounded-xl border border-slate-200 shadow-sm mx-auto w-full max-w-xl"
+  />
+  <figcaption className="text-center text-sm text-slate-500 mt-3">Cross-section of the Organ of Corti, showing the inner and outer hair cells sitting on the basilar membrane beneath the tectorial membrane.</figcaption>
+</figure>
+
 Sitting atop the basilar membrane is the **Organ of Corti**, which contains the sensory receptors: the **hair cells**. There are two types.
 
-**Inner hair cells (IHC):** Approximately 3,500, arranged in a single row. These are the primary sensory receptors. When the basilar membrane moves, tiny projections called **stereocilia** are deflected. This deflection opens ion channels, generating an electrical potential that triggers neurotransmitter release onto the **auditory nerve fibres**. Each IHC connects to many auditory nerve fibres, which fire action potentials that propagate to the brainstem and ultimately to the auditory cortex.
+**Inner hair cells (IHC):** Approximately 3,500, arranged in a single row. These are the primary sensory receptors. When the basilar membrane moves, tiny projections called **stereocilia** are deflected. This deflection opens ion channels, generating an electrical potential that triggers neurotransmitter release onto the **auditory nerve fibers**. Each IHC connects to many auditory nerve fibers, which fire action potentials that propagate to the brainstem and ultimately to the auditory cortex.
 
 **Outer hair cells (OHC):** Approximately 12,000, arranged in three rows. Rather than primarily transmitting information, OHCs are **active amplifiers**. When stimulated, they physically change length (electromotility), amplifying the basilar membrane's motion for low-level sounds. This active mechanism provides up to 40–50 dB of gain for soft sounds and is responsible for the ear's exquisite sensitivity and sharp frequency tuning. OHCs are fragile: noise exposure, ototoxic drugs, and ageing all damage them first, causing the characteristic high-frequency hearing loss of noise-induced and age-related hearing impairment.
 
@@ -77,7 +95,7 @@ Auditory nerve fibres show **phase locking** for frequencies below approximately
 <ChatPrompt
   title="Hair cells and hearing loss"
   q1="If a noise exposure destroys a band of outer hair cells at the 4 kHz region of the cochlea, what would happen to hearing thresholds at 4 kHz? What about at 500 Hz? Why?"
-  q2="The cochlear implant replaces lost hair cells with an electrode array. It works by stimulating auditory nerve fibres directly at different positions along the cochlea. Given what you know about tonotopy, how does a cochlear implant represent different frequencies?"
+  q2="The cochlear implant replaces lost hair cells with an electrode array. It works by stimulating auditory nerve fibers directly at different positions along the cochlea. Given what you know about tonotopy, how does a cochlear implant represent different frequencies?"
   q3="Otoacoustic emissions are generated by outer hair cells. Why are they useful for newborn hearing screening? What does it mean if OAEs are absent in a newborn?"
 />
 
@@ -111,7 +129,12 @@ The **sone** is the unit of loudness: 1 sone is defined as the loudness of a 100
 
 ### 5.2.3 Equal-Loudness Contours
 
-Loudness is strongly frequency-dependent. The classic measurement is the **equal-loudness contour** (standardised as ISO 226): for a reference 1000 Hz tone at a given level, what levels at other frequencies sound equally loud?
+Loudness is strongly frequency-dependent. The classic measurement is the **equal-loudness contour** (standardized as ISO 226): for a reference 1000 Hz tone at a given level, what levels at other frequencies sound equally loud?
+
+<figure className="my-6">
+  <img src="/images/equal-loudness-contours.png" alt="ISO 226 equal-loudness contours showing how perceived loudness varies with frequency and sound pressure level" className="rounded-xl w-full border border-slate-200" />
+  <figcaption className="text-sm text-slate-500 mt-2 text-center">ISO 226 equal-loudness contours. Each curve represents sounds perceived as equally loud. The dip around 3–4 kHz reflects outer-ear resonance; the steep rise at low frequencies means bass tones require much higher SPL to be heard as loud as mid-frequency tones.</figcaption>
+</figure>
 
 The result reveals that at moderate levels, we are most sensitive to frequencies between approximately 1 and 5 kHz — the outer ear resonance range. We are markedly less sensitive to very low frequencies. A 50 Hz tone must be played at nearly 80 dB SPL to sound as loud as a 1000 Hz tone at 40 dB SPL.
 
@@ -146,7 +169,7 @@ For resolved harmonics (low-numbered harmonics that fall on separate, distinct b
 
 ### 5.3.3 The Temporal Model
 
-The **temporal model** holds that pitch is coded by the *timing* of neural firing. Because auditory nerve fibres phase-lock to the waveform below about 3–5 kHz, the pattern of neural spikes carries information about the period of the stimulus. The brain extracts this period using a process similar to **autocorrelation** — finding common time intervals that repeat across many fibres.
+The **temporal model** holds that pitch is coded by the *timing* of neural firing. Because auditory nerve fibers phase-lock to the waveform below about 3–5 kHz, the pattern of neural spikes carries information about the period of the stimulus. The brain extracts this period using a process similar to **autocorrelation** — finding common time intervals that repeat across many fibres.
 
 Temporal coding explains the **missing fundamental**: a complex tone with harmonics at 200, 300, 400 Hz (but no 100 Hz component) is perceived with a pitch of 100 Hz. The place model struggles here — there is no energy at the 100 Hz place. But the temporal pattern of all the harmonics together has a period of 10 ms (= 1/100 Hz), which the temporal model correctly recovers.
 
@@ -173,7 +196,7 @@ Simply having two ears improves performance across many tasks. **Binaural summat
 
 ### 5.4.2 The Duplex Theory: ITD and ILD
 
-The dominant cues for horizontal sound localisation are:
+The dominant cues for horizontal sound localization are:
 
 **Interaural Time Difference (ITD):** A sound to the left arrives at the left ear slightly before the right. The maximum ITD (sound directly to the side) is approximately 630 µs — the time for sound to travel the diameter of the head. Because the ITD is a time difference that is independent of frequency, it is most useful for **low-frequency** sounds (below ~1.5 kHz), where the auditory system can measure the phase difference between the two ear signals without ambiguity.
 
@@ -194,7 +217,7 @@ Together, ITD and ILD form the **duplex theory** of binaural hearing: ITD domina
 
 The ITD and ILD cues are **symmetric**: a sound directly ahead and a sound directly behind produce the same ITD and ILD (both zero). More generally, all locations on a conical surface around the interaural axis produce the same ITD. This is the **cone of confusion**.
 
-The brain resolves front-back and up-down ambiguity using the **pinna**: the complex shape of the outer ear creates direction-dependent spectral colouration, especially above 4 kHz. We naturally move our heads to resolve remaining ambiguities — head movements generate ITD changes that uniquely identify whether a source is in front or behind.
+The brain resolves front-back and up-down ambiguity using the **pinna**: the complex shape of the outer ear creates direction-dependent spectral coloration, especially above 4 kHz. We naturally move our heads to resolve remaining ambiguities — head movements generate ITD changes that uniquely identify whether a source is in front or behind.
 
 ### 5.4.4 Binaural Processing in the Brainstem
 
@@ -214,7 +237,7 @@ The **Lateral Superior Olive (LSO)** processes ILD. LSO neurons receive excitato
 
 ### 5.5.1 Spectrograms
 
-A **spectrogram** is a time-frequency-energy representation — the "visual language" of speech acoustics. The horizontal axis is time, the vertical axis is frequency, and brightness or colour encodes energy. Spectrograms are computed using the **Short-Time Fourier Transform (STFT)**: the signal is divided into short overlapping windows, and the Fourier transform is computed for each window to give a local spectrum.
+A **spectrogram** is a time-frequency-energy representation — the "visual language" of speech acoustics. The horizontal axis is time, the vertical axis is frequency, and brightness or color encodes energy. Spectrograms are computed using the **Short-Time Fourier Transform (STFT)**: the signal is divided into short overlapping windows, and the Fourier transform is computed for each window to give a local spectrum.
 
 Two analysis settings produce fundamentally different spectrograms, illustrating the time-frequency trade-off from Chapter 3:
 
@@ -242,6 +265,8 @@ As introduced in Chapter 1, the vocal tract is a resonant tube. Its acoustic res
 **F3** (typically 2200–3500 Hz) is influenced by the tip of the tongue. It plays a special role in distinguishing /r/ from /l/ in English.
 
 The F1×F2 plane defines a **vowel space** — different languages carve up this space differently, using different sets of formant contrasts to distinguish vowels. Plotting vowels in F1-F2 space (with F1 on the vertical axis, inverted, and F2 on the horizontal axis) produces a map that looks strikingly like the traditional phonetic vowel quadrilateral.
+
+Explore the Wikipedia article on [Vowel](https://en.wikipedia.org/wiki/Vowel) to see the F1-F2 vowel space diagram and listen to audio samples of vowels from different languages — a great way to connect the acoustics to what you actually hear.
 
 <ChatPrompt
   title="Formants and vowels"
@@ -307,9 +332,9 @@ Listeners do not decode speech purely from the acoustics up. Higher-level knowle
 
 Some acoustic signals are genuinely ambiguous — the same physical input can be perceived in two different ways. These **bistable auditory illusions** reveal that perception is an active constructive process, not a passive readout of the signal.
 
-The **Yanny/Laurel** recording became famous in 2018: the same audio file is heard as "Yanny" by some listeners and "Laurel" by others. Analysis reveals that both words' spectral patterns are physically present in the recording — low-frequency energy compatible with "Laurel" and high-frequency energy compatible with "Yanny." Which one you hear depends on how your perceptual system weights these different frequency regions, influenced by your hearing ability, the playback device, and your listening expectations.
+The **Yanny/Laurel** recording became famous in 2018: the same audio file is heard as "Yanny" by some listeners and "Laurel" by others. Analysis reveals that both words' spectral patterns are physically present in the recording — low-frequency energy compatible with "Laurel" and high-frequency energy compatible with "Yanny." Which one you hear depends on how your perceptual system weights these different frequency regions, influenced by your hearing ability, the playback device, and your listening expectations. Listen for yourself and read more on the [Yanny or Laurel Wikipedia page](https://en.wikipedia.org/wiki/Yanny_or_Laurel).
 
-The **"Brainstorm" / "Green Needle"** illusion is even more striking: if you think "brainstorm" while listening, you hear "brainstorm"; if you think "green needle," you hear "green needle." The sound is identical. Top-down expectations are not just influencing a borderline ambiguous decision — they are selecting between entirely different percepts.
+The **"Brainstorm" / "Green Needle"** illusion is even more striking: if you think "brainstorm" while listening, you hear "brainstorm"; if you think "green needle," you hear "green needle." The sound is identical. Top-down expectations are not just influencing a borderline ambiguous decision — they are selecting between entirely different percepts. Try it yourself — [this Buzzfeed article](https://www.buzzfeed.com/stephenlaconte/brainstorm-green-needle) has the audio and a good explanation.
 
 <Callout type="key">
 Bistable illusions demonstrate that speech perception is a **hypothesis-testing process**: the brain generates hypotheses about what was said, tests them against the incoming signal, and commits to the best-supported one. When the signal is ambiguous, the hypothesis wins.
@@ -336,7 +361,7 @@ This chapter traced sound from the ear drum to the perception of meaning:
 - **Speech perception** overcomes variability and noise through bottom-up phoneme pruning (language-specific perceptual categories) and top-down mechanisms (phoneme restoration, semantic context). **Bistable illusions** reveal that perception is an active, hypothesis-testing process shaped by both signal and expectation.
 
 <PodcastPlayer
-  src="/audio/The_Hidden_Physics_of_Sound_Waves.m4a"
-  title="Hearing and Speech Overview"
+  src="/audio/From_air_vibrations_to_human_speech.m4a"
+  title="From air vibrations to human speech"
   position="bottom"
 />
