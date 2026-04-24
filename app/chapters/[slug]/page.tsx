@@ -29,6 +29,9 @@ import DampingExplorer from '@/components/DampingExplorer'
 import ConvolutionDemo from '@/components/ConvolutionDemo'
 import ModulationExplorer from '@/components/ModulationExplorer'
 import WindowingDemo from '@/components/WindowingDemo'
+import CochleaExplorer from '@/components/CochleaExplorer'
+import BinauralDemo from '@/components/BinauralDemo'
+import SpectrogramViewer from '@/components/SpectrogramViewer'
 
 // ─── Static MDX components ───────────────────────────────────────────────────
 
@@ -95,6 +98,9 @@ const components = {
   ConvolutionDemo,
   ModulationExplorer,
   WindowingDemo,
+  CochleaExplorer,
+  BinauralDemo,
+  SpectrogramViewer,
 }
 
 // ─── Page ────────────────────────────────────────────────────────────────────

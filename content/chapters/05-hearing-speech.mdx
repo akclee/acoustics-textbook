@@ -1,0 +1,342 @@
+---
+title: Hearing and Speech
+number: 5
+description: From the mechanics of the ear to the perception of speech — how we turn pressure waves into meaning.
+---
+
+Sound only matters if something receives it. The ear is one of the most elegant transducers in nature — it converts pressure variations in air into neural signals with extraordinary speed, sensitivity, and frequency resolution. And speech is one of the most remarkable signals it processes: structured, variable, context-dependent, and decoded with an ease that belies the underlying complexity. This chapter traces the full path from sound wave to meaning.
+
+<PodcastPlayer
+  src="/audio/The_Hidden_Physics_of_Sound_Waves.m4a"
+  title="Hearing and Speech Overview"
+  position="top"
+/>
+
+---
+
+## 5.1 The Auditory System
+
+### 5.1.1 The Outer Ear
+
+The journey from sound to perception begins at the **pinna** — the visible, cartilaginous flap of the outer ear. Despite looking passive, the pinna is acoustically active: its complex ridges and folds selectively amplify frequencies between roughly 2 and 4 kHz, a range critical for speech intelligibility. This amplification is called the **outer ear resonance**, and it contributes up to 15–20 dB of gain in that frequency range.
+
+The outer ear also provides the first cues for **sound localisation in elevation**. Sounds arriving from different heights reflect off the pinna's convolutions in subtly different ways, creating direction-dependent spectral patterns (the **Head-Related Transfer Function**, or HRTF) that allow the brain to estimate whether a sound is above or below.
+
+<Callout type="key">
+The outer ear is not just a passive sound collector. It amplifies critical speech frequencies and encodes elevation information into the signal's spectrum before it even enters the ear canal.
+</Callout>
+
+### 5.1.2 The Middle Ear: Impedance Matching
+
+At the end of the ear canal sits the **tympanic membrane** (eardrum). Sound pressure waves make it vibrate, and that vibration is transmitted across the air-filled middle ear cavity by three tiny bones — the **ossicles**: the malleus (hammer), incus (anvil), and stapes (stirrup).
+
+The ossicles solve a fundamental physics problem: sound travelling in air must be transmitted into the fluid-filled cochlea, and air and fluid have very different **acoustic impedances**. Without adaptation, most of the energy would simply reflect back at the interface — as happens at the surface of a swimming pool, where you can barely hear sounds from above the water. The ossicles act as a **mechanical impedance transformer**, concentrating force from the relatively large eardrum onto the much smaller stapes footplate, transmitting approximately 60% of incoming energy into the cochlea. Without this transformer, only about 0.1% of the energy would make it through.
+
+<ChatPrompt
+  title="Think it through: the ossicle transformer"
+  q1="The stapes footplate has an area roughly 1/17th the size of the eardrum. Using the principle that pressure = force / area, can you work out how this geometry contributes to impedance matching? What would happen to the sound energy without the ossicles — where would it go?"
+/>
+
+### 5.1.3 The Cochlea: Frequency Analysis in a Coiled Tube
+
+The stapes pushes on the **oval window**, setting the fluid of the **cochlea** in motion. The cochlea is a fluid-filled, coiled tube approximately 3.5 cm long when unrolled. Running along its length is the **basilar membrane** — a thin, flexible strip that performs the cochlea's central function: **mechanical frequency analysis**.
+
+The basilar membrane is not uniform. At the **base** (near the stapes), it is narrow, stiff, and responds best to high frequencies. At the **apex** (the far end), it is wider, more flexible, and responds best to low frequencies. This gradient means that different points along the membrane vibrate maximally in response to different input frequencies — a property called **tonotopy**.
+
+When a pure tone enters the cochlea, a **travelling wave** propagates along the basilar membrane. The wave grows in amplitude, peaks at the region tuned to that frequency, then rapidly decays beyond the peak. Different frequencies peak at different locations.
+
+<Callout type="key">
+The cochlea performs a **mechanical Fourier analysis**: it decomposes a complex sound into its frequency components, with each frequency producing maximal vibration at a specific location along the basilar membrane. This tonotopic map is preserved all the way up to the auditory cortex.
+</Callout>
+
+Helmholtz first proposed tonotopy in 1857; Georg von Békésy confirmed it experimentally in the 1960s and was awarded the Nobel Prize for Physics in Medicine for this work.
+
+<CochleaExplorer />
+
+<ChatPrompt
+  title="Explore the tonotopic map"
+  q1="What happens to the location of the travelling wave peak when you change from 1000 Hz to 4000 Hz? Why does the basilar membrane need to be wider and less stiff at the apex?"
+  q2="If the basilar membrane were uniform — the same stiffness and width along its entire length — what would happen to the cochlea's ability to separate frequencies? What kind of frequency response would you expect from such a system?"
+  q3="The cochlea maps frequency to place logarithmically, not linearly. An octave (doubling of frequency) takes up roughly the same distance anywhere along the basilar membrane. Why might a logarithmic map be more useful for hearing than a linear one?"
+/>
+
+### 5.1.4 Hair Cells and the Auditory Nerve
+
+Sitting atop the basilar membrane is the **Organ of Corti**, which contains the sensory receptors: the **hair cells**. There are two types.
+
+**Inner hair cells (IHC):** Approximately 3,500, arranged in a single row. These are the primary sensory receptors. When the basilar membrane moves, tiny projections called **stereocilia** are deflected. This deflection opens ion channels, generating an electrical potential that triggers neurotransmitter release onto the **auditory nerve fibres**. Each IHC connects to many auditory nerve fibres, which fire action potentials that propagate to the brainstem and ultimately to the auditory cortex.
+
+**Outer hair cells (OHC):** Approximately 12,000, arranged in three rows. Rather than primarily transmitting information, OHCs are **active amplifiers**. When stimulated, they physically change length (electromotility), amplifying the basilar membrane's motion for low-level sounds. This active mechanism provides up to 40–50 dB of gain for soft sounds and is responsible for the ear's exquisite sensitivity and sharp frequency tuning. OHCs are fragile: noise exposure, ototoxic drugs, and ageing all damage them first, causing the characteristic high-frequency hearing loss of noise-induced and age-related hearing impairment.
+
+<Callout type="info">
+Outer hair cells also generate sounds. The ear is not just a receiver — it produces faint emissions called **otoacoustic emissions (OAEs)** that can be measured with a microphone in the ear canal. OAEs are now routinely used to screen newborns for hearing loss, since they require no behavioural response from the infant.
+</Callout>
+
+Auditory nerve fibres show **phase locking** for frequencies below approximately 3–5 kHz: they preferentially fire near the peaks of the basilar membrane vibration cycle, providing a temporal code for frequency in addition to the place code.
+
+<ChatPrompt
+  title="Hair cells and hearing loss"
+  q1="If a noise exposure destroys a band of outer hair cells at the 4 kHz region of the cochlea, what would happen to hearing thresholds at 4 kHz? What about at 500 Hz? Why?"
+  q2="The cochlear implant replaces lost hair cells with an electrode array. It works by stimulating auditory nerve fibres directly at different positions along the cochlea. Given what you know about tonotopy, how does a cochlear implant represent different frequencies?"
+  q3="Otoacoustic emissions are generated by outer hair cells. Why are they useful for newborn hearing screening? What does it mean if OAEs are absent in a newborn?"
+/>
+
+---
+
+## 5.2 Loudness Perception
+
+### 5.2.1 Loudness vs. Intensity
+
+**Loudness** is the perceptual attribute of a sound that allows us to rank it from soft to loud. It is explicitly subjective — a psychological quantity. **Intensity** (or sound pressure level, in dB SPL) is the corresponding physical quantity. The two are related but not identical, and their relationship depends on frequency, bandwidth, and hearing status.
+
+<Callout type="warning">
+The terms *loudness* and *intensity* are not interchangeable. A 1000 Hz tone and a 100 Hz tone can have the same intensity (same dB SPL) but very different loudness — the 100 Hz tone will sound considerably softer.
+</Callout>
+
+### 5.2.2 Stevens' Power Law
+
+Psychophysical experiments ask listeners to rate the magnitude of their sensations relative to a reference. For loudness, the relationship between the physical stimulus and the perceived sensation follows **Stevens' Power Law**:
+
+<Equation label="Stevens' Power Law for loudness">L ∝ I<sup>0.3</sup></Equation>
+
+Where L is loudness (in **sones**) and I is intensity. The exponent 0.3 means that to double the perceived loudness, intensity must be multiplied by approximately 10 — a 10 dB increase. This compressive relationship means our hearing spans an enormous range of intensities (from the threshold of hearing to the threshold of pain, roughly 140 dB or a factor of 10<sup>14</sup> in intensity) while keeping perceived loudness changes manageable.
+
+The **sone** is the unit of loudness: 1 sone is defined as the loudness of a 1000 Hz pure tone at 40 dB SPL. 2 sones is twice as loud; 0.5 sones is half as loud.
+
+<ChatPrompt
+  title="Stevens' law and compression"
+  q1="If a sound at 60 dB SPL has a loudness of 4 sones, approximately how loud (in sones) would the same sound be at 70 dB SPL? At 80 dB SPL? What does this tell you about how the auditory system handles large changes in intensity?"
+  q2="The basilar membrane's input-output function is also compressive — for a tone near a neuron's characteristic frequency, a 10 dB increase in level produces only about a 2.5 dB increase in BM vibration. How might this basilar membrane compression contribute to the perceptual loudness compression described by Stevens' law?"
+/>
+
+### 5.2.3 Equal-Loudness Contours
+
+Loudness is strongly frequency-dependent. The classic measurement is the **equal-loudness contour** (standardised as ISO 226): for a reference 1000 Hz tone at a given level, what levels at other frequencies sound equally loud?
+
+The result reveals that at moderate levels, we are most sensitive to frequencies between approximately 1 and 5 kHz — the outer ear resonance range. We are markedly less sensitive to very low frequencies. A 50 Hz tone must be played at nearly 80 dB SPL to sound as loud as a 1000 Hz tone at 40 dB SPL.
+
+The unit of **phon** captures loudness level in a frequency-independent way: a sound's loudness level in phons equals the dB SPL of a 1000 Hz tone that it sounds equally loud to. So any sound that sounds as loud as a 40 dB SPL 1000 Hz tone has a loudness level of 40 phons, regardless of its frequency.
+
+<Callout type="key">
+The 40-phon equal-loudness contour explains why cheap speakers and headphones sound "thin": they reproduce mid-frequencies accurately but roll off the bass, and at low playback levels, the bass sounds disproportionately soft because of the steep low-frequency portion of the equal-loudness curves.
+</Callout>
+
+<ChatPrompt
+  title="Equal-loudness contours and audio"
+  q1="Many amplifiers include a 'loudness' button that boosts bass and treble at low volumes. Given the shape of equal-loudness contours, why does boosting bass make music sound more balanced at low listening levels?"
+  q2="The A-weighting filter used in sound level meters approximately follows the inverse of the 40-phon equal-loudness contour. In other words, it attenuates low and very high frequencies, matching our reduced sensitivity there. Why would we want a measurement that weights frequencies according to their perceived loudness?"
+  q3="A jet engine at 140 dB SPL is painful regardless of frequency. But at low intensities, low frequencies are much less audible than mid-frequencies. What does this suggest about how equal-loudness contours change shape at very high intensities?"
+/>
+
+---
+
+## 5.3 Pitch Perception
+
+### 5.3.1 What Is Pitch?
+
+**Pitch** is the perceptual attribute that lets us order sounds on a scale from low to high — it is closely (but not perfectly) correlated with the fundamental frequency f₀ of a sound. Pitch allows us to hear melody, to distinguish vowel tones in tonal languages, and to perceive the emotion conveyed by a rising or falling sentence intonation.
+
+Two complementary theories explain how the auditory system extracts pitch.
+
+### 5.3.2 The Place Model
+
+The **place model** (Helmholtz's view) holds that pitch is coded by the *location* of maximum basilar membrane excitation. The excitation pattern across the cochlea represents the spectrum of the sound; the brain infers pitch from the spacing of peaks in this pattern.
+
+For resolved harmonics (low-numbered harmonics that fall on separate, distinct basilar membrane regions), this works well. Each harmonic stimulates a narrow region, and the brain uses the spacing between these peaks to infer f₀.
+
+### 5.3.3 The Temporal Model
+
+The **temporal model** holds that pitch is coded by the *timing* of neural firing. Because auditory nerve fibres phase-lock to the waveform below about 3–5 kHz, the pattern of neural spikes carries information about the period of the stimulus. The brain extracts this period using a process similar to **autocorrelation** — finding common time intervals that repeat across many fibres.
+
+Temporal coding explains the **missing fundamental**: a complex tone with harmonics at 200, 300, 400 Hz (but no 100 Hz component) is perceived with a pitch of 100 Hz. The place model struggles here — there is no energy at the 100 Hz place. But the temporal pattern of all the harmonics together has a period of 10 ms (= 1/100 Hz), which the temporal model correctly recovers.
+
+<Callout type="key">
+Modern pitch perception theory incorporates both mechanisms. The place code dominates for high frequencies (above ~5 kHz) where phase locking is absent. The temporal code dominates at lower frequencies and explains phenomena like the missing fundamental. The two codes are complementary, not competing.
+</Callout>
+
+<ChatPrompt
+  title="Place vs. temporal pitch coding"
+  q1="A patient has a cochlear implant that stimulates only the basal (high-frequency) end of the cochlea. Would you expect their pitch perception to rely more on the place model or the temporal model? What difficulties might they have with speech perception?"
+  q2="Phase locking breaks down above about 3–5 kHz in mammals. What does this predict about our ability to perceive melodies using pure tones at very high frequencies — could you hear 'Happy Birthday' played with 10,000 Hz tones?"
+  q3="The mel scale maps frequency to perceived pitch. Low frequencies (below ~500 Hz) are mapped more compressively than high frequencies — equal changes in mel correspond to equal-sounding pitch steps. Why might the mel scale be relevant for designing features for automatic speech recognition systems?"
+/>
+
+---
+
+## 5.4 Binaural Hearing
+
+We have two ears, and the brain exploits the differences between the signals they receive to locate sounds in space. This is called **binaural processing**, and it is one of the most sophisticated computational feats in auditory neuroscience.
+
+### 5.4.1 Binaural Summation
+
+Simply having two ears improves performance across many tasks. **Binaural summation** refers to improvements in detection, discrimination, and speech understanding that arise from combining information across ears. Detection thresholds improve by approximately 3 dB, equivalent to doubling the signal power — consistent with statistical independence of the two neural channels.
+
+### 5.4.2 The Duplex Theory: ITD and ILD
+
+The dominant cues for horizontal sound localisation are:
+
+**Interaural Time Difference (ITD):** A sound to the left arrives at the left ear slightly before the right. The maximum ITD (sound directly to the side) is approximately 630 µs — the time for sound to travel the diameter of the head. Because the ITD is a time difference that is independent of frequency, it is most useful for **low-frequency** sounds (below ~1.5 kHz), where the auditory system can measure the phase difference between the two ear signals without ambiguity.
+
+**Interaural Level Difference (ILD):** High-frequency sounds are reflected by the head, creating an **acoustic head shadow** — the far ear receives less energy. The level difference between the two ears (ILD) can reach up to 20 dB for high-frequency sounds arriving directly to one side. Because diffraction depends on wavelength, the head shadow only becomes significant when the head diameter (roughly 17–22 cm) is comparable to or larger than the wavelength — i.e., for frequencies above ~1.5 kHz.
+
+Together, ITD and ILD form the **duplex theory** of binaural hearing: ITD dominates at low frequencies, ILD dominates at high frequencies, and both contribute in the middle.
+
+<BinauralDemo />
+
+<ChatPrompt
+  title="Binaural cues in action"
+  q1="In the demo, what happens to the perceived location when you set ITD to +300 µs (right) but ILD to −10 dB (louder in left)? The two cues are pointing in opposite directions — how does the auditory system resolve this conflict?"
+  q2="Why is it difficult to localise sounds using only ITD if the frequency is above about 1500 Hz? Think about what happens to the phase relationship between the two ears when the wavelength is shorter than the head diameter."
+  q3="Noise-cancelling headphones create an 'in-the-head' sound image. Why does a sound reproduced through headphones — even with correct ILD and ITD — often feel like it's coming from inside your head rather than from an external source?"
+/>
+
+### 5.4.3 The Cone of Confusion
+
+The ITD and ILD cues are **symmetric**: a sound directly ahead and a sound directly behind produce the same ITD and ILD (both zero). More generally, all locations on a conical surface around the interaural axis produce the same ITD. This is the **cone of confusion**.
+
+The brain resolves front-back and up-down ambiguity using the **pinna**: the complex shape of the outer ear creates direction-dependent spectral colouration, especially above 4 kHz. We naturally move our heads to resolve remaining ambiguities — head movements generate ITD changes that uniquely identify whether a source is in front or behind.
+
+### 5.4.4 Binaural Processing in the Brainstem
+
+The first site of binaural interaction is the **Superior Olivary Complex (SOC)** in the brainstem, which receives projections from both cochlear nuclei:
+
+The **Medial Superior Olive (MSO)** processes ITD. Neurons here act as **coincidence detectors** — they respond maximally when inputs from both ears arrive simultaneously. Because each neuron receives the two signals via delay lines of different lengths, different neurons respond to different ITDs, creating a neural map of sound location.
+
+The **Lateral Superior Olive (LSO)** processes ILD. LSO neurons receive excitatory input from the ipsilateral (same-side) ear and inhibitory input from the contralateral ear via the cochlear nucleus. When the ipsilateral sound is louder, the neuron fires; when the contralateral sound is louder, it is suppressed.
+
+<Callout type="info">
+**Head-Related Transfer Function (HRTF):** A personalised characterisation of how the head, pinna, and torso modify sounds arriving from each direction. Processing any sound through the HRTF for a given direction and playing it over headphones can create a convincing sensation of sound coming from outside the head — used in virtual reality audio, spatial audio for music, and assistive hearing devices.
+</Callout>
+
+---
+
+## 5.5 Speech Acoustics
+
+### 5.5.1 Spectrograms
+
+A **spectrogram** is a time-frequency-energy representation — the "visual language" of speech acoustics. The horizontal axis is time, the vertical axis is frequency, and brightness or colour encodes energy. Spectrograms are computed using the **Short-Time Fourier Transform (STFT)**: the signal is divided into short overlapping windows, and the Fourier transform is computed for each window to give a local spectrum.
+
+Two analysis settings produce fundamentally different spectrograms, illustrating the time-frequency trade-off from Chapter 3:
+
+**Broadband spectrogram** (short window, ~5–20 ms): Good time resolution, poor frequency resolution. Individual harmonics are not resolved and merge into broad bands. Voice onset times and rapid consonant transitions are clearly visible.
+
+**Narrowband spectrogram** (long window, ~50–100 ms): Good frequency resolution, poor time resolution. Individual harmonics appear as separate horizontal striations. Useful for tracking pitch (F0) and formants precisely.
+
+<SpectrogramViewer />
+
+<ChatPrompt
+  title="Reading spectrograms"
+  q1="In the narrowband spectrogram, you can see fine horizontal striations — what do these represent, and how does their spacing relate to the fundamental frequency F0 of the vowel?"
+  q2="Switch between vowels in the viewer. The F2 (second formant, shown in blue) differs dramatically between /i/ and /u/ — around 2290 Hz vs. 870 Hz. What does this tell you about what is different between these two vowels in terms of the vocal tract configuration?"
+  q3="A spectrogram is essentially a visual representation of a filter-bank output. Given what you learned in Chapter 3 about cochlear frequency analysis, in what sense is your auditory system computing something like a spectrogram on the incoming sound?"
+/>
+
+### 5.5.2 Formants and the Vocal Tract as Resonator
+
+As introduced in Chapter 1, the vocal tract is a resonant tube. Its acoustic resonances — the **formants** — produce peaks in the output spectrum. The first three formants (F1, F2, F3) are most important for vowel identity:
+
+**F1** (typically 250–750 Hz) reflects the size of the back cavity of the vocal tract. It rises as the jaw opens — low vowels (/æ/, /ɑ/) have high F1, high vowels (/i/, /u/) have low F1.
+
+**F2** (typically 800–2500 Hz) reflects the position of the tongue body. Front vowels (/i/, /æ/) have high F2 because the tongue divides the tract into a small front cavity and large back cavity. Back vowels (/u/, /ɑ/) have low F2.
+
+**F3** (typically 2200–3500 Hz) is influenced by the tip of the tongue. It plays a special role in distinguishing /r/ from /l/ in English.
+
+The F1×F2 plane defines a **vowel space** — different languages carve up this space differently, using different sets of formant contrasts to distinguish vowels. Plotting vowels in F1-F2 space (with F1 on the vertical axis, inverted, and F2 on the horizontal axis) produces a map that looks strikingly like the traditional phonetic vowel quadrilateral.
+
+<ChatPrompt
+  title="Formants and vowels"
+  q1="Why does opening your jaw raise F1? Think about what happens to the vocal tract resonances when the cavity becomes larger. Use the tube resonance formula: for an open-closed tube of length L, the resonant frequencies are c/(4L), 3c/(4L), 5c/(4L)... What happens when L increases?"
+  q2="The vowel /i/ has high F2 (~2290 Hz) and low F1 (~270 Hz), while /u/ has low F2 (~870 Hz) and low F1 (~300 Hz). Both are 'high' vowels, but they sound very different. What is the articulatory difference between them, and how does that difference produce such different F2 values?"
+  q3="When you put on a funny voice by raising the pitch of your voice, does that change the formant frequencies? Why or why not? Think carefully about what controls the source and what controls the filter."
+/>
+
+### 5.5.3 Co-articulation
+
+Speech is not a sequence of discrete, neatly separated sounds. In real speech, articulators (tongue, lips, jaw) are always preparing for the next phoneme while finishing the current one — a phenomenon called **co-articulation**.
+
+Co-articulation means that the acoustic properties of a given phoneme are influenced by its neighbours. The word "key" has a more front /k/ than "car" because the /k/ is influenced by the following high front vowel /i/. This makes speech efficient — we can speak much faster than if we produced each phoneme separately — but it also means there is no simple one-to-one mapping from acoustic segment to phoneme. The signal for a given sound varies depending on context, speaker, rate, and emotion.
+
+<Callout type="key">
+Co-articulation is one of the fundamental challenges of automatic speech recognition: the same phoneme produces different acoustic patterns depending on context. It is also why human listeners are so impressively robust — we have learned to handle this variability effortlessly.
+</Callout>
+
+---
+
+## 5.6 Speech Perception
+
+### 5.6.1 Why Speech Perception Should Be Hard
+
+The challenges facing a listener trying to decode speech are formidable:
+
+- **The lexicon is enormous.** English has ~60,000 common words. The listener must identify the intended word from a huge search space.
+- **Co-articulation causes variability.** The acoustic form of a phoneme depends on its context.
+- **Talkers vary enormously.** Pitch, accent, speaking rate, and vocal tract size all differ between talkers.
+- **The signal is often degraded.** Noise, reverberation, and hearing loss all corrupt the input.
+
+Yet listeners decode speech with extraordinary speed and accuracy — roughly 10 phonemes per second, in noisy conditions, across widely different accents. How?
+
+### 5.6.2 Bottom-Up Mechanisms: Phoneme Pruning
+
+One powerful bottom-up strategy is **phoneme pruning**: listeners only distinguish sounds that are phonemically contrastive in their language, ignoring distinctions that are not linguistically meaningful.
+
+English uses approximately 44 phonemes drawn from a universal inventory of about 160 phones (distinct speech sounds). Native English speakers learn to ignore distinctions like the aspirated/unaspirated contrast in Hindi or the tonal distinctions in Mandarin — distinctions that are phonemically critical in those languages.
+
+The downside: phoneme pruning makes learning to distinguish non-native contrasts very difficult in adulthood. Japanese speakers struggle to distinguish English /r/ from /l/; native English speakers struggle to hear the Hindi retroflex/dental distinction. This selective perceptual narrowing, once called "perceptual magnet" effects, solidifies during a **critical period** in early childhood and represents the language-specific tuning of the perceptual system.
+
+<ChatPrompt
+  title="Phoneme pruning and language learning"
+  q1="Infants can distinguish all phonemic contrasts from all languages at birth, but by age 10–12 months, they have narrowed their perception to the contrasts of their native language. Why might this 'perceptual narrowing' be advantageous, even though it makes later language learning harder?"
+  q2="Hindi distinguishes between dental /t/ (tongue tip at teeth) and retroflex /t/ (tongue tip curled back) as separate phonemes. A native English speaker hears both as plain /t/. What does this tell us about the role of learning in perception? Is the difference physically present in the signal?"
+/>
+
+### 5.6.3 Top-Down Mechanisms: When Context Shapes Perception
+
+Listeners do not decode speech purely from the acoustics up. Higher-level knowledge — about words, grammar, and context — flows back down to influence what we hear. This **top-down** processing is not cheating: it is essential to robust speech perception.
+
+**The phoneme restoration effect** (Warren, 1970) demonstrates this vividly. Replace the /s/ in "legislature" with a cough of the same duration, and listeners not only fail to notice the replacement — they actively hear the /s/ as present. The brain fills in the missing phoneme based on lexical knowledge. Even more striking: if you then ask listeners to identify the location of the cough, they cannot do so accurately, because the cough has been perceptually integrated into the word.
+
+**Semantic context** powerfully shifts perception. An ambiguous sound on the /p/-/b/ boundary is heard as /b/ in "She ran hot water for the bath" but as /p/ in "She ran hot water for the path." The acoustic signal is identical; the context — and crucially, the listener's expectation about what word makes sense — tips the perceptual decision.
+
+<ChatPrompt
+  title="Top-down speech perception"
+  q1="The phoneme restoration effect shows that the brain can 'hallucinate' a missing phoneme. What does this tell us about the relationship between what we hear and what is in the signal? Is this a bug or a feature of the perceptual system?"
+  q2="If semantic context can change what phoneme you hear — the exact same acoustic signal perceived as /b/ or /p/ depending on the sentence — what are the implications for automatic speech recognition systems that process acoustics without access to semantic context?"
+/>
+
+### 5.6.4 Bistable Auditory Illusions
+
+Some acoustic signals are genuinely ambiguous — the same physical input can be perceived in two different ways. These **bistable auditory illusions** reveal that perception is an active constructive process, not a passive readout of the signal.
+
+The **Yanny/Laurel** recording became famous in 2018: the same audio file is heard as "Yanny" by some listeners and "Laurel" by others. Analysis reveals that both words' spectral patterns are physically present in the recording — low-frequency energy compatible with "Laurel" and high-frequency energy compatible with "Yanny." Which one you hear depends on how your perceptual system weights these different frequency regions, influenced by your hearing ability, the playback device, and your listening expectations.
+
+The **"Brainstorm" / "Green Needle"** illusion is even more striking: if you think "brainstorm" while listening, you hear "brainstorm"; if you think "green needle," you hear "green needle." The sound is identical. Top-down expectations are not just influencing a borderline ambiguous decision — they are selecting between entirely different percepts.
+
+<Callout type="key">
+Bistable illusions demonstrate that speech perception is a **hypothesis-testing process**: the brain generates hypotheses about what was said, tests them against the incoming signal, and commits to the best-supported one. When the signal is ambiguous, the hypothesis wins.
+</Callout>
+
+<ChatPrompt
+  title="Bistable illusions and perception"
+  q1="The Yanny/Laurel recording is bistable across listeners — some people always hear one, some always hear the other. The brainstorm/green needle illusion is bistable within a single listener, depending on their expectation. What does this difference suggest about the mechanisms underlying the two illusions?"
+  q2="Can you think of an everyday listening situation where top-down knowledge actively helps you understand speech that would otherwise be unintelligible — where context is doing a lot of the decoding work? What would happen in that same situation if you switched to a foreign language you don't know?"
+/>
+
+---
+
+## Summary
+
+This chapter traced sound from the ear drum to the perception of meaning:
+
+- The **outer ear** amplifies 2–4 kHz and encodes elevation via the pinna's HRTF. The **middle ear ossicles** solve the impedance mismatch between air and cochlear fluid.
+- The **cochlea** performs a mechanical Fourier analysis: the basilar membrane maps frequency to place (tonotopy), with high frequencies at the base and low frequencies at the apex. **Outer hair cells** provide active amplification; **inner hair cells** transduce motion to neural signals.
+- **Loudness** follows Stevens' Power Law (L ∝ I<sup>0.3</sup>); equal-loudness contours show that perceived loudness is strongly frequency-dependent, with peak sensitivity near 2–4 kHz.
+- **Pitch** is coded by both place (the location of basilar membrane excitation) and temporal (the timing of neural firing) mechanisms. Both are needed to explain phenomena like the missing fundamental.
+- **Binaural hearing** uses ITD (interaural time difference, dominant at low frequencies) and ILD (interaural level difference, dominant at high frequencies) to localise sound horizontally. The cone of confusion is resolved by pinna cues and head movements.
+- **Spectrograms** display speech as a time-frequency-energy image. **Formants** are the vocal tract resonances that define vowel identity; F1 reflects jaw opening, F2 reflects tongue position. **Co-articulation** means adjacent phonemes influence each other's acoustics.
+- **Speech perception** overcomes variability and noise through bottom-up phoneme pruning (language-specific perceptual categories) and top-down mechanisms (phoneme restoration, semantic context). **Bistable illusions** reveal that perception is an active, hypothesis-testing process shaped by both signal and expectation.
+
+<PodcastPlayer
+  src="/audio/The_Hidden_Physics_of_Sound_Waves.m4a"
+  title="Hearing and Speech Overview"
+  position="bottom"
+/>
