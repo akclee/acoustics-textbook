@@ -1,0 +1,324 @@
+---
+title: Vibration, Waves & Musical Acoustics
+number: 2
+description: From simple harmonic motion to the acoustics of musical instruments
+---
+
+Every musical instrument is a carefully engineered vibrating system. A violin string, a column of air inside a clarinet, and a drum membrane all obey the same underlying physics — simple harmonic motion, wave interference, and resonance. This chapter builds the mechanical foundation for understanding how sounds are produced, why instruments have their characteristic timbres, and what connects the physics of springs to the sound of a symphony orchestra.
+
+<PodcastPlayer
+  src="/audio/Ch2_podcast.m4a"
+  title="Chapter 2: Vibration, Waves & Musical Acoustics Overview"
+  position="top"
+/>
+
+---
+
+## 2.1 Simple Harmonic Motion
+
+### 2.1.1 Equilibrium, Restoring Forces, and Oscillation
+
+Pull a mass on a spring sideways and release it — the mass oscillates back and forth. This is **simple harmonic motion (SHM)**, the most fundamental type of oscillation in physics, and the starting point for understanding all vibrating systems.
+
+Try it now: explore the [PhET Mass and Spring simulation](https://phet.colorado.edu/en/simulations/mass-spring-lab) to see how changing the mass and spring stiffness affects the oscillation period before reading on.
+
+Three ingredients are needed:
+
+**Equilibrium** is the rest position where net forces on the object are zero. Displace the object from equilibrium, and a **restoring force** pulls it back. For a spring, this is described by **Hooke's Law**: the restoring force is proportional to displacement and always directed toward equilibrium.
+
+<Equation label="Hooke's Law: restoring force of a spring">F = −k·x</Equation>
+
+Here k is the **spring constant** (stiffness, in N/m) and x is the displacement from equilibrium. The minus sign means the force always opposes the displacement.
+
+Combining Hooke's Law with **Newton's second law** (F = m·a, where a = ẍ is acceleration) gives the equation of motion for SHM:
+
+<Equation label="SHM equation of motion">m·ẍ = −k·x</Equation>
+
+The solution to this equation is a sinusoid — displacement varies smoothly in time as a cosine (or sine) wave:
+
+<Equation label="SHM displacement solution">x(t) = A·cos(2π·fₙ·t + φ)</Equation>
+
+where **A** is the amplitude (maximum displacement), **f**ₙ is the natural frequency, and **φ** is the initial phase.
+
+### 2.1.2 Natural Frequency
+
+The natural frequency of a mass-spring system depends only on stiffness and mass:
+
+<Equation label="Natural frequency of a mass-spring system">fₙ = (1 / 2π) · √(k / m)</Equation>
+
+The intuition is straightforward:
+- **Stiffer spring** (larger k) → stronger restoring force → system snaps back faster → higher frequency
+- **Heavier mass** (larger m) → more inertia to overcome → system moves slower → lower frequency
+
+This formula governs every resonating system you will encounter: strings, pipes, bars, membranes, even the eardrum. Increasing stiffness raises the natural frequency; increasing mass lowers it.
+
+<Callout type="key">
+The natural frequency fₙ = (1/2π)·√(k/m) is the single most important formula in acoustics. It predicts the pitch of every vibrating object — from a guitar string to a concert hall air mode — because the same physics of stiffness and mass governs them all.
+</Callout>
+
+During SHM, energy is constantly exchanged between two forms: **potential energy** stored in the spring (maximum at the turning points, when displacement is greatest) and **kinetic energy** of the moving mass (maximum at the centre, when velocity is greatest). The total mechanical energy remains constant in ideal SHM — the system oscillates indefinitely without losing amplitude.
+
+<ChatPrompt
+  title="SHM and natural frequency"
+  q1="A guitar string and a bass guitar string are tuned to the same note. The bass string is much heavier (larger mass per unit length). What must be different about its tension to produce the same frequency? Use fₙ = (1/2π)√(k/m) to reason through your answer, treating tension as the analogue of stiffness."
+  q2="A tuning fork is made by bending a steel rod into a U-shape. If you file metal from the tips of the prongs, does the pitch go up or down? What if you file metal from the base of the prongs near the bend? Think about how each modification changes the stiffness and mass of the vibrating system."
+  q3="In SHM, the speed of the oscillating mass is fastest at the equilibrium position and zero at the turning points. Explain why this makes physical sense in terms of energy: where is the kinetic energy maximum, and where is the potential energy maximum?"
+/>
+
+### 2.1.3 Damped Oscillations
+
+Real oscillating systems always lose energy over time — to friction, air resistance, or internal material deformation. This energy loss is called **damping**, and it causes the amplitude of oscillation to decay exponentially with time. In a damped system, the envelope of the oscillation shrinks, even as the frequency of oscillation remains nearly constant.
+
+The rate of decay is quantified by the **quality factor Q**:
+- **High Q** (e.g., a tuning fork, Q ≈ 1000): energy is lost slowly, the system rings for a long time, and the resonance peak is very sharp — the system responds strongly only to frequencies very close to its natural frequency
+- **Low Q** (e.g., a padded drum, Q ≈ 5): energy is lost quickly, the system decays fast, and the resonance peak is broad — it responds to a wide range of driving frequencies
+
+Q is also a measure of how many oscillation cycles occur before the amplitude decays to a small fraction of its initial value.
+
+<Callout type="key">
+High Q = slow decay + sharp resonance. Low Q = fast decay + broad resonance. Musical instruments are engineered to have the right Q for their role: a bell needs high Q to sustain its tone; a drum skin needs low Q so it doesn't ring on after the strike.
+</Callout>
+
+<DampedOscillationExplorer />
+
+<ChatPrompt
+  title="Damping and Q factor"
+  q1="A wine glass rings for several seconds when struck, while a foam cup barely makes a sound. What physical differences produce such different Q factors? Which physical property — mass, stiffness, or damping — is most different between the two objects?"
+  q2="The Tacoma Narrows Bridge collapsed in 1940 when wind-driven vortex shedding matched the bridge's natural frequency, causing resonance to build up catastrophically. The bridge had a very high Q factor for its twisting mode. If engineers could have redesigned the bridge to prevent this, should they have increased or decreased Q? What structural changes would achieve that?"
+/>
+
+### 2.1.4 Forced Oscillations and Resonance
+
+When an external periodic force drives an oscillating system, the system responds at the driving frequency. The amplitude of the response depends critically on how close the driving frequency is to the system's natural frequency:
+
+- When the driving frequency equals the natural frequency, energy is transferred very efficiently into the system — amplitude grows dramatically. This is **resonance**.
+- When the driving frequency is far from the natural frequency, the system responds weakly.
+
+The sharpness of the resonance peak depends on Q: high-Q systems have narrow, tall peaks; low-Q systems have broad, short peaks.
+
+Resonance is central to how musical instruments work. The player provides a driving force — a bowed string, a buzzing reed, vibrating lips — and the resonant body of the instrument amplifies the vibration at specific frequencies (the harmonics), shaping the instrument's tone.
+
+---
+
+## 2.2 Waves and Standing Waves
+
+### 2.2.1 From Vibration to Sound Waves
+
+A vibrating object — a string, a drum, a speaker cone — disturbs the air around it. When the surface moves outward, it compresses the nearby air molecules (**compression**); when it moves inward, it leaves a region of lower pressure (**rarefaction**). These alternating compressions and rarefactions propagate outward as a **longitudinal wave**: the air molecules oscillate back and forth in the same direction the wave travels.
+
+Sound in air is a longitudinal wave. The speed of propagation depends on the elasticity and density of the medium:
+
+<Equation label="Speed of sound in a medium">v = √(E / ρ)</Equation>
+
+where E is the elasticity (bulk modulus) and ρ is the density. In air at room temperature, v ≈ 343 m/s. In water, v ≈ 1,480 m/s — water is much stiffer, and despite being denser, sound travels faster.
+
+<Callout type="key">
+Sound is not a transverse wave — air molecules don't move up and down as in a water ripple. They oscillate back and forth along the direction of travel. It is the **pattern** of compressions and rarefactions that moves forward, not the air molecules themselves.
+</Callout>
+
+### 2.2.2 Standing Waves on a String
+
+When a wave travels along a string and reaches a fixed end, it reflects back. The forward-travelling and backward-travelling waves coexist in the string at the same time. At **most** frequencies, the two waves partially cancel and the pattern looks chaotic. But at **special** frequencies, they interfere constructively to create a **standing wave** — a stationary pattern of nodes and antinodes.
+
+- **Nodes**: points where the string is always stationary (destructive interference of the two travelling waves)
+- **Antinodes**: points of maximum oscillation amplitude (constructive interference)
+
+For a string fixed at both ends, standing waves occur only when the string length L is an integer number of half-wavelengths:
+
+<Equation label="Standing wave condition for a fixed-fixed string">L = n · (λ/2), giving fₙ = n · v / (2L), where n = 1, 2, 3, …</Equation>
+
+Each value of n gives a **harmonic** (also called a **mode** or **partial**):
+- n = 1: **fundamental** (one antinode, no internal nodes)
+- n = 2: **second harmonic** (two antinodes, one internal node) — frequency 2f₁
+- n = 3: **third harmonic** — frequency 3f₁
+- and so on...
+
+The set of all harmonics forms the **harmonic series**: f₁, 2f₁, 3f₁, 4f₁, … When a string is plucked or bowed, it vibrates in a mixture of all these modes simultaneously. The relative amplitudes of the harmonics determine the **timbre** of the sound.
+
+<StandingWaveExplorer />
+
+<ChatPrompt
+  title="Standing waves and harmonics"
+  q1="A string of length 0.65 m vibrates with a wave speed of 286 m/s. Calculate the fundamental frequency and the frequencies of the 2nd, 3rd, and 4th harmonics. Which of these would correspond to an octave above the fundamental?"
+  q2="When a guitar string is plucked exactly at its midpoint, the second harmonic (and all even harmonics) are suppressed. Why? Think about where the nodes and antinodes of the second harmonic are located, and what happens physically when you disturb the string at a node position of that harmonic."
+  q3="A guitarist presses their finger lightly on the string at its exact midpoint (without pressing it to the fret) and plucks — this produces a high, pure-sounding 'harmonic' or 'flageolet' tone. Explain why this works in terms of standing wave modes. Which modes survive and which are killed?"
+/>
+
+### 2.2.3 Mersenne's Law
+
+The wave speed on a stretched string depends on tension T and mass per unit length μ (Greek: mu):
+
+<Equation label="Wave speed on a stretched string">v = √(T / μ)</Equation>
+
+Substituting into f₁ = v / 2L gives **Mersenne's Law**, which describes the fundamental frequency of a vibrating string:
+
+<Equation label="Mersenne's Law">f₁ = (1 / 2L) · √(T / μ)</Equation>
+
+This single formula explains the design of every stringed instrument:
+
+- **Pressing a fret** shortens the vibrating length L → higher f₁
+- **Tightening a tuning peg** increases tension T → higher f₁
+- **Using a thicker or wound string** increases μ → lower f₁ (this is why bass strings are heavier)
+
+<ChatPrompt
+  title="Mersenne's Law in practice"
+  q1="A violinist tunes their A string to 440 Hz. To play the A one octave higher (880 Hz), they press a finger partway along the string. At what fraction of the string length from the nut must they place their finger? Explain using Mersenne's Law."
+  q2="Bass guitar strings are wound with metal wire to increase their mass per unit length. Why is this done instead of simply making the string thicker? What would be the acoustic disadvantage of a very thick, stiff string even if it had the right mass?"
+  q3="A sitar has movable frets and sympathetic strings that are not directly played. These sympathetic strings are tuned to harmonics of the played notes and vibrate by resonance. What physical condition must be met for one string to excite another by resonance, and how does Mersenne's Law determine which sympathetic strings respond?"
+/>
+
+### 2.2.4 Standing Waves in Pipes
+
+Air columns in tubes also support standing waves, but the boundary conditions are different from a string:
+
+- **Closed end**: the wall forces zero air displacement. The closed end is a **displacement node** and a **pressure antinode** (maximum pressure variation).
+- **Open end**: the air is free to move, and the pressure equalizes with the atmosphere. The open end is a **displacement antinode** and a **pressure node**.
+
+**Open-open pipe** (open at both ends, like a flute or open organ pipe):
+
+<Equation label="Harmonics of an open-open pipe">fₙ = n · v / (2L), where n = 1, 2, 3, …</Equation>
+
+All harmonics are present — same series as a fixed-fixed string.
+
+**Open-closed pipe** (closed at one end, like a clarinet, or a stopped organ pipe):
+
+<Equation label="Harmonics of an open-closed pipe">fₙ = n · v / (4L), where n = 1, 3, 5, … (odd harmonics only)</Equation>
+
+Because the closed end forces a node and the open end forces an antinode, only an odd number of quarter-wavelengths fit in the tube. Only **odd harmonics** exist. This gives the open-closed pipe a darker, hollower tone — even harmonics are absent.
+
+An open-closed pipe also has a fundamental frequency **half that** of an open-open pipe of the same length (f = v/4L vs v/2L). This is why a clarinet sounds lower than a flute of similar physical length.
+
+<Callout type="key">
+Open-open: all harmonics. Open-closed: odd harmonics only. The bore shape (cylindrical vs conical) and end conditions determine the harmonic content — and therefore the timbre — of every wind instrument.
+</Callout>
+
+<ChatPrompt
+  title="Pipes, boundary conditions, and tone"
+  q1="A flute and a clarinet are both approximately 60 cm long. Using v = 343 m/s, calculate the fundamental frequency of each, treating the flute as an open-open pipe and the clarinet as an open-closed pipe. How do your answers compare to the actual fundamental notes of each instrument (middle C ≈ 262 Hz for flute, D below middle C ≈ 147 Hz for clarinet)?"
+  q2="The clarinet can only produce odd harmonics in its fundamental register, so its second resonance is three times the fundamental frequency — it 'overblows to the 12th' (an octave plus a fifth). The saxophone has a conical bore and produces all harmonics — it overblows to the octave. Why does the bore shape affect which harmonics are present?"
+/>
+
+---
+
+## 2.3 Musical Acoustics
+
+All musical instruments share the same source-resonator structure: a **source** generates a broadband or periodic vibration, and a **resonator** selects and amplifies specific frequencies. The instrument's timbre — the complex blend of harmonics we recognise as its sound — emerges from which resonant modes are excited and how they decay.
+
+### 2.3.1 String Instruments
+
+String instruments use a taut string as the vibrating source. Because a string alone displaces very little air, the instrument body acts as an **acoustic radiator** — it couples the string's energy efficiently into the surrounding air.
+
+**Bowed strings** (violin, viola, cello, double bass) exploit a **stick-slip** mechanism. The horsehair bow, coated with rosin, grips the string with friction and drags it sideways. When the restoring tension in the string exceeds the frictional force, the string suddenly snaps back — then the bow catches it again. This cycle repeats at the fundamental frequency of the string, producing a waveform close to a **sawtooth wave**. A sawtooth wave contains all harmonics with amplitudes that decrease as 1/n, giving bowed strings their rich, bright timbre.
+
+**Bow placement** shapes the harmonic content. Bowing near the bridge (**sul ponticello**) produces a bright, intense tone with many high harmonics; bowing over the fingerboard (**sul tasto**) produces a soft, flute-like tone. The physics: a node of each harmonic mode must exist at the bowing point. Harmonics that require an antinode at the bowing position are suppressed — bowing near the bridge, which is a nodal point for many low harmonics, emphasises the higher modes.
+
+The **violin body** is a carefully engineered resonator. Its curved spruce top plate and maple back plate flex in complex vibrational modes, efficiently radiating sound across a wide frequency range. The f-holes allow air to move in and out of the body cavity, creating a **Helmholtz resonance** at around 280 Hz that reinforces the low-frequency response.
+
+<ChatPrompt
+  title="Bowed string physics"
+  q1="The stick-slip mechanism produces a waveform that approximates a sawtooth wave. A sawtooth wave contains all harmonics with amplitudes proportional to 1/n (where n is the harmonic number). Sketch the relative amplitudes of the first six harmonics. Now compare this to a square wave, which contains only odd harmonics with 1/n amplitudes. Which would sound brighter, and why?"
+  q2="A violinist playing sul ponticello (near the bridge) produces a glassy, intense tone. A violinist playing sul tasto (over the fingerboard) produces a soft, airy tone. Both are playing the same note at the same nominal pitch. What is physically different about the harmonic content of each, and why does bowing position control it?"
+/>
+
+### 2.3.2 Woodwind Instruments
+
+Woodwind instruments use an air column as the resonator. The **source** mechanism differs by instrument family:
+
+**Edge tone** instruments (flute, recorder) direct a flat air jet across the sharp edge of the embouchure hole. The jet is unstable and oscillates back and forth across the edge at a frequency controlled by the standing wave in the bore — the bore tells the source how fast to oscillate, creating a self-sustaining feedback loop.
+
+**Single reed** instruments (clarinet, saxophone) use a thin cane or plastic reed that opens and closes against a flat mouthpiece surface. Air pressure from the player's lungs periodically opens the reed; the acoustic pressure wave in the bore controls the timing, locking the reed oscillation to the tube's resonant frequency.
+
+**Double reed** instruments (oboe, bassoon) use two cane blades vibrating against each other. The double reed is more sensitive to the player's lip pressure and produces a more nasal, penetrating tone due to its higher-frequency reed resonance.
+
+The **bore shape** is critical:
+- **Cylindrical bores** (clarinet) behave as open-closed pipes — only odd harmonics, overblowing by a 12th
+- **Conical bores** (oboe, saxophone) behave as open-open pipes despite being closed at the mouthpiece end — all harmonics present, overblowing to the octave
+
+**Finger holes** shorten the effective tube length by creating a pressure node near the open hole, raising the pitch. The **tone hole cutoff frequency** means very low frequencies can propagate past an open hole, enabling **fork fingerings** — covering a hole below an open hole to fine-tune the pitch downward.
+
+<ChatPrompt
+  title="Woodwind acoustics"
+  q1="A clarinet player can produce notes in two registers: the lower register uses the fundamental resonance of the tube, and the upper register (the 'clarion') uses the first overblown resonance. Because only odd harmonics exist in a cylindrical closed pipe, the clarion is a 12th above the chalumeau (an octave plus a fifth, i.e., a factor of 3). Verify this: if the lowest note on a clarinet is D3 (147 Hz), what should be the lowest note of the clarion register?"
+  q2="The saxophone has a conical bore but uses a single reed like the clarinet. Despite the reed creating a closed end, the conical bore supports all harmonics and overblows to the octave. Research or reason about why a conical bore restores the 'missing' even harmonics that a cylindrical closed pipe lacks."
+/>
+
+### 2.3.3 Brass Instruments
+
+Brass instruments use the **lip-buzzing** source: the player's lips act as a pressure-controlled valve. Air from the lungs forces the lips open; acoustic pressure in the tube pushes them shut. The cycle repeats at the frequency controlled by the tube resonance, not directly by the lip tension — though higher lip tension enables the player to select higher tube resonances.
+
+The instrument behaves nominally as a **closed-open tube** — closed at the mouthpiece (lips forming a node), open at the bell. However, the **bell** plays a more active role than simply opening the tube:
+
+- It increases the radiation efficiency, projecting sound in a preferred direction
+- It transforms the acoustic impedance so that **even harmonics** are supported, completing the full harmonic series
+- Without the bell flare, a cylindrical tube closed at one end would produce only odd harmonics, making smooth playing across the range impossible
+
+The **bore profile** shapes the timbre:
+- Mostly **cylindrical** bores (trumpet, trombone — cylindrical except for the bell section) produce a brighter, more penetrating sound
+- Mostly **conical** bores (horn, tuba, euphonium) produce a darker, more mellow tone
+
+**Valves** divert the air through additional tubing to lower the pitch:
+- First valve: lowers pitch by a whole step (2 semitones) — adds 12.2% of tube length
+- Second valve: lowers by one semitone — adds 5.95%
+- Third valve: lowers by three semitones — adds 18.9%
+
+By combining valves, a player can access all 12 semitones of the chromatic scale in each harmonic register.
+
+<ChatPrompt
+  title="Brass acoustics and valves"
+  q1="A bugle has no valves and can only play notes from a single harmonic series. If the fundamental frequency is approximately 116 Hz (B♭2), calculate the frequencies of harmonics 2 through 8. Identify which musical notes these correspond to (A4 = 440 Hz) and notice which famous calls — reveille, taps — can be played using only these harmonics."
+  q2="The trombone uses a slide instead of valves to change pitch. Each of the 7 slide positions lowers the pitch by one semitone (a factor of 2^(1/12) ≈ 1.059). If position 1 (shortest, closed) has an effective tube length of 2.75 m, what is the tube length at position 7? What percentage longer is the tube?"
+/>
+
+### 2.3.4 Keyboard Instruments
+
+Keyboard instruments use a mechanical action to trigger string or pipe vibration, decoupling the act of playing from direct physical contact with the vibrating element.
+
+The **clavichord** is the simplest keyboard instrument. A small brass blade (the tangent) strikes the string and remains in contact, acting simultaneously as a fret (defining the vibrating length) and a damper (muting the rest of the string). The player can apply subtle vibrato by varying finger pressure. However, the clavichord is extremely quiet — it can barely project beyond a small room — because the tangent damps the string's vibration.
+
+The **harpsichord** uses a quill or plastic plectrum to pluck the string as the key is depressed. Once plucked, the string rings freely. Because the plucking force is nearly constant regardless of how fast the key is pressed, the harpsichord cannot vary its dynamics through touch — all notes at a given registration sound at approximately the same level. Harpsichords compensate with multiple manuals and ranks of strings at different pitches (8-foot, 4-foot, 16-foot) that can be combined for contrast.
+
+The **piano** (patented c. 1709 by Bartolomeo Cristofori) uses a **hammer-escapement** mechanism: a felt-covered hammer is flung at the string and rebounds immediately, allowing the string to vibrate freely. The key insight is that the speed of the hammer — controlled by how fast the key is depressed — determines how hard the string is struck and therefore how loud the note sounds. This gave the instrument its original name: *gravicembalo col piano e forte* (harpsichord with soft and loud), later shortened to **pianoforte** and then **piano**.
+
+Modern piano strings are under enormous tension — approximately 70–90 kg per string — with the total across all 230+ strings approaching 20 tonnes. The iron frame introduced in the 19th century made this possible, enabling the piano's wide dynamic range and powerful bass.
+
+### 2.3.5 Percussion
+
+Percussion instruments generate sound through direct mechanical impact. Unlike strings and pipes, many percussion vibrators produce **inharmonic** overtones — their higher modes are not integer multiples of the fundamental.
+
+**Struck-bar instruments** (marimba, xylophone, glockenspiel, vibraphone) use wooden or metal bars. Bars vibrate in transverse flexural modes, and the frequencies of the overtones are determined by the bar's geometry. For a free-free bar (unsupported at both ends), the overtone frequencies do not fall on simple integer ratios — they are inharmonic. Instrument makers **undercut** bars (remove material from the underside near the centre) to selectively lower the frequency of specific overtones, bringing them into musically useful relationships with the fundamental. A marimba bar is typically tuned so that its second mode falls a double octave above the fundamental.
+
+**Membranophones** (drums) use a circular membrane stretched over a frame. The modes of vibration of a circular membrane produce **Chladni patterns** — the two-dimensional analogue of standing wave nodes on a string. Unlike a string's harmonics, the modes of a circular membrane are governed by Bessel functions, and their frequencies do not form a harmonic series. This is why most drums do not have a clearly defined pitch — the overtones are inharmonic. Kettle drums (timpani) are an exception: the closed kettle beneath the membrane couples to specific modes and partially regularises the frequency relationships, producing a definite pitch.
+
+<Callout type="key">
+The key difference between harmonic and inharmonic instruments: strings and open pipes produce integer-multiple harmonics that fuse into a single perceived pitch. Bars and membranes produce inharmonic partials — the overtones do not form a simple series — which is why percussion instruments often lack a clear tonal centre.
+</Callout>
+
+<ChatPrompt
+  title="Percussion and inharmonicity"
+  q1="A marimba bar is undercut to tune its second mode to exactly four times the fundamental frequency (two octaves up). Before undercutting, the second mode of a free-free bar occurs at approximately 2.76 times the fundamental. Undercutting near the center lowers the second mode frequency. Which mode — fundamental or second — is affected more by material removed from the center of the bar? Why?"
+  q2="Chladni patterns can be made visible by sprinkling sand on a vibrating plate: the sand collects at the nodes (stationary lines) and leaves the antinodes clear. If you drive a square metal plate at increasing frequencies, you see progressively more complex node patterns appear. What determines how many nodal lines a given mode has, and why do higher modes produce more complex patterns?"
+/>
+
+---
+
+## 2.4 Summary
+
+Simple harmonic motion — governed by the interplay of restoring force and inertia — is the foundation of all acoustics. The natural frequency formula fₙ = (1/2π)√(k/m) reappears in every vibrating system, from a spring-mass oscillator to a guitar string (where tension is the stiffness and mass per unit length is the inertia) to a pipe of air.
+
+Standing waves arise when travelling waves reflect and interfere to form stationary patterns of nodes and antinodes. The resonant frequencies of a system — the harmonics — depend on its geometry and boundary conditions. Open-open systems (strings fixed at both ends, open pipes) support all harmonics; open-closed systems support only odd harmonics.
+
+Musical instruments exploit these principles with remarkable ingenuity. Every instrument family — strings, woodwinds, brass, keyboards, percussion — uses a different combination of source mechanism and resonator geometry to shape the harmonic content and therefore the timbre. Understanding the physics connects the violin bow to Mersenne's Law, the clarinet bore to quarter-wave resonance, and the bell of a trumpet to harmonic completion.
+
+<ChatPrompt
+  title="Bringing it together"
+  q1="A colleague claims that all musical instruments are just different implementations of the same source-filter model: a broadband or periodic source drives a resonant filter that selects specific frequencies. Using one instrument from each family (strings, woodwinds, brass, percussion), identify the source and the filter, and describe what determines the filter's resonant frequencies."
+  q2="The harmonic series (f, 2f, 3f, 4f, ...) is the basis of Western tonal harmony — the intervals of the octave, perfect fifth, perfect fourth, and major third all correspond to simple frequency ratios between harmonics. Explain why an instrument that produces only odd harmonics (like the clarinet) might interact differently with harmony than one producing all harmonics (like the violin or flute)."
+/>
+
+<Chapter02Quiz />
+
+<PodcastPlayer
+  src="/audio/Ch2_podcast.m4a"
+  title="Chapter 2: Vibration, Waves & Musical Acoustics Overview"
+  position="bottom"
+/>

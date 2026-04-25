@@ -1,0 +1,315 @@
+---
+title: Sound Levels & Propagation
+number: 4
+description: Decibels, frequency weighting, noise measurement, and how sound travels through space and rooms
+---
+
+Sound spans an extraordinary range of physical magnitudes — from the faint rustle of leaves to the roar of a Saturn V rocket, acoustic pressure varies by a factor of ten million. No linear scale could represent this usefully. This chapter introduces the logarithmic tools that make acoustic measurement practical, explains how sound levels are measured and weighted for human perception, and traces what happens to sound as it travels through space and encounters surfaces.
+
+<PodcastPlayer
+  src="/audio/Ch4_podcast.m4a"
+  title="Chapter 4: Sound Levels & Propagation Overview"
+  position="top"
+/>
+
+---
+
+## 4.1 Why Logarithms?
+
+### 4.1.1 The Dynamic Range Problem
+
+The faintest sound a healthy human ear can detect at 1 kHz has an intensity of approximately 10⁻¹² W/m² (watts per square meter). A jet engine at close range produces about 10² W/m². That is a ratio of 10¹⁴ — one hundred trillion to one. Trying to plot these values on a linear scale is hopeless: if the quietest sound occupies 1 mm on your axis, the jet engine would be 100 billion kilometers away.
+
+The auditory system itself solves this problem by compressing its response logarithmically. Perceived loudness grows roughly as the logarithm of intensity, not linearly with it. A measurement scale that mirrors this compression is both mathematically convenient and perceptually meaningful.
+
+### 4.1.2 Interval Scales vs Ratio Scales
+
+Two fundamentally different types of scale exist in measurement:
+
+An **interval scale** uses equal-sized steps: successive values differ by a constant amount (0, 1, 2, 3 … or 0, 5, 10, 15 …). The resolution — the smallest detectable difference — is fixed everywhere on the scale.
+
+A **ratio scale** uses constant ratios between successive values: 1, 2, 4, 8, 16 … or 1, 10, 100, 1000 … The resolution varies with the value — small numbers are represented with fine granularity, large numbers more coarsely.
+
+Sound intensity is best represented on a ratio scale because the perceptual significance of a change depends on the ratio, not the absolute difference. Adding 1 W/m² to a quiet sound (0.001 W/m²) is a thousandfold increase — enormous. Adding 1 W/m² to a loud sound (100 W/m²) is barely detectable.
+
+### 4.1.3 Logarithms: The Mathematics of Ratios
+
+A logarithm answers the question: *to what power must I raise the base to get this number?*
+
+<Equation label="Definition of logarithm">If b<sup>x</sup> = N, then log<sub>b</sub>(N) = x</Equation>
+
+For acoustic work, we use **base-10 logarithms** (written log or log₁₀). Key values to memorize:
+
+- log(1) = 0
+- log(10) = 1
+- log(100) = 2
+- log(1,000) = 3
+- log(0.1) = −1
+- log(2) ≈ 0.3
+- log(4) ≈ 0.6
+
+Three rules make logarithms especially useful for working with ratios:
+
+<Equation label="Log rule 1: multiplication becomes addition">log(a · b) = log(a) + log(b)</Equation>
+
+<Equation label="Log rule 2: division becomes subtraction">log(a / b) = log(a) − log(b)</Equation>
+
+<Equation label="Log rule 3: powers become multiplication">log(aᵇ) = b · log(a)</Equation>
+
+These rules mean that instead of multiplying or dividing large numbers, you can add or subtract their logarithms — which is exactly what a slide rule did, and why logarithms transformed scientific calculation before computers existed.
+
+<ChatPrompt
+  title="Logarithms and ratios"
+  q1="Without a calculator, estimate log₁₀(200). Use the fact that log(2) ≈ 0.3 and log(100) = 2, and apply the multiplication rule log(a·b) = log(a) + log(b)."
+  q2="The Richter scale measures earthquake intensity logarithmically. A magnitude 7 earthquake is 10 times as intense as a magnitude 6, and 100 times as intense as a magnitude 5. A magnitude 9 earthquake (like the 2011 Tōhoku event) is how many times more intense than a magnitude 5? Express your answer using powers of 10."
+  q3="Musicians describe pitch in octaves, where each octave represents a doubling of frequency. Going from A4 (440 Hz) to A7 is three octaves. What is the frequency of A7? Now express the ratio A7/A4 as a base-2 logarithm. Why is log₂ more natural for musical intervals than log₁₀?"
+/>
+
+---
+
+## 4.2 Decibels
+
+### 4.2.1 From Bels to Decibels
+
+The **Bel** (named after Alexander Graham Bell) was defined as the base-10 logarithm of the ratio of two intensities. Because the Bel turns out to be a rather large unit for everyday use, acousticians work with the **decibel** (dB) — one tenth of a Bel:
+
+<Equation label="Decibels from intensity ratio">dB = 10 · log₁₀(Iₓ / Iᵣ)</Equation>
+
+where Iₓ is the intensity being measured and Iᵣ is a reference intensity. The decibel is always a **ratio** — it has no meaning without specifying the reference.
+
+Key intensity ratios and their dB equivalents are worth knowing by heart:
+
+<div className="not-prose my-6 overflow-x-auto">
+<table className="min-w-full text-sm border border-slate-200 rounded-xl overflow-hidden">
+  <thead className="bg-slate-50">
+    <tr>
+      <th className="px-4 py-2 text-left font-semibold text-slate-700 border-b border-slate-200">Intensity ratio (Iₓ/Iᵣ)</th>
+      <th className="px-4 py-2 text-left font-semibold text-slate-700 border-b border-slate-200">dB</th>
+    </tr>
+  </thead>
+  <tbody className="divide-y divide-slate-100">
+    <tr><td className="px-4 py-2 text-slate-700">1</td><td className="px-4 py-2 text-slate-700">0 dB</td></tr>
+    <tr><td className="px-4 py-2 text-slate-700">2</td><td className="px-4 py-2 text-slate-700">+3 dB</td></tr>
+    <tr><td className="px-4 py-2 text-slate-700">10</td><td className="px-4 py-2 text-slate-700">+10 dB</td></tr>
+    <tr><td className="px-4 py-2 text-slate-700">100</td><td className="px-4 py-2 text-slate-700">+20 dB</td></tr>
+    <tr><td className="px-4 py-2 text-slate-700">1,000</td><td className="px-4 py-2 text-slate-700">+30 dB</td></tr>
+    <tr><td className="px-4 py-2 text-slate-700">0.5</td><td className="px-4 py-2 text-slate-700">−3 dB</td></tr>
+    <tr><td className="px-4 py-2 text-slate-700">0.1</td><td className="px-4 py-2 text-slate-700">−10 dB</td></tr>
+  </tbody>
+</table>
+</div>
+
+<Callout type="key">
+A doubling of intensity = +3 dB. A tenfold increase = +10 dB. A halving = −3 dB. These three relationships allow you to build up or break down almost any dB calculation mentally.
+</Callout>
+
+### 4.2.2 Intensity Level (dB IL)
+
+When a standard reference intensity is adopted, the decibel becomes a practical absolute measure. The reference is chosen to correspond to the threshold of human hearing at 1 kHz:
+
+<Equation label="Reference intensity for dB IL">Iᵣ = 10⁻¹² W/m²</Equation>
+
+<Equation label="Intensity level formula">dB IL = 10 · log₁₀(Iₓ / 10⁻¹² W/m²)</Equation>
+
+**Example:** What is the intensity level of a sound with I = 10⁻⁶ W/m²?
+
+dB IL = 10 · log(10⁻⁶ / 10⁻¹²) = 10 · log(10⁶) = 10 · 6 = **60 dB IL**
+
+### 4.2.3 Sound Pressure Level (dB SPL)
+
+In practice, it is far easier to measure acoustic pressure with a microphone than to measure intensity directly. The two quantities are related by:
+
+<Equation label="Intensity proportional to pressure squared">I ∝ P²</Equation>
+
+Because of this squared relationship, converting from intensity ratios to pressure ratios introduces a factor of 2 in front of the logarithm:
+
+<Equation label="dB SPL from pressure ratio">dB SPL = 20 · log₁₀(Pₓ / Pᵣ)</Equation>
+
+The reference pressure is 20 μPa (micropascals) — the standard threshold of human hearing at 1 kHz, equivalent to the reference intensity of 10⁻¹² W/m²:
+
+<Equation label="Reference pressure for dB SPL">Pᵣ = 20 μPa</Equation>
+
+Under standard conditions, dB SPL = dB IL. The two scales are equivalent; dB SPL is simply more practical to measure.
+
+**Why 20 and not 10?** Because pressure and intensity are related by I ∝ P², applying the log rule log(P²) = 2·log(P) means we multiply by 2. A doubling of pressure (+6 dB SPL) corresponds to a quadrupling of intensity (+6 dB IL) — the same dB value because both formulae agree.
+
+<div className="not-prose my-6 overflow-x-auto">
+<table className="min-w-full text-sm border border-slate-200 rounded-xl overflow-hidden">
+  <thead className="bg-slate-50">
+    <tr>
+      <th className="px-4 py-2 text-left font-semibold text-slate-700 border-b border-slate-200">Scenario</th>
+      <th className="px-4 py-2 text-left font-semibold text-slate-700 border-b border-slate-200">dB SPL</th>
+    </tr>
+  </thead>
+  <tbody className="divide-y divide-slate-100">
+    <tr><td className="px-4 py-2 text-slate-700">Threshold of hearing</td><td className="px-4 py-2 text-slate-700">0</td></tr>
+    <tr><td className="px-4 py-2 text-slate-700">Leaves rustling</td><td className="px-4 py-2 text-slate-700">20</td></tr>
+    <tr><td className="px-4 py-2 text-slate-700">Quiet home</td><td className="px-4 py-2 text-slate-700">40</td></tr>
+    <tr><td className="px-4 py-2 text-slate-700">Normal conversation (1 m)</td><td className="px-4 py-2 text-slate-700">60</td></tr>
+    <tr><td className="px-4 py-2 text-slate-700">Busy office</td><td className="px-4 py-2 text-slate-700">70</td></tr>
+    <tr><td className="px-4 py-2 text-slate-700">Heavy truck (15 m)</td><td className="px-4 py-2 text-slate-700">90</td></tr>
+    <tr><td className="px-4 py-2 text-slate-700">Rock concert (front row)</td><td className="px-4 py-2 text-slate-700">110</td></tr>
+    <tr><td className="px-4 py-2 text-slate-700">Jet engine (30 m)</td><td className="px-4 py-2 text-slate-700">130</td></tr>
+    <tr><td className="px-4 py-2 text-slate-700">Pain threshold</td><td className="px-4 py-2 text-slate-700">~140</td></tr>
+    <tr><td className="px-4 py-2 text-slate-700">Saturn V rocket (launch pad)</td><td className="px-4 py-2 text-slate-700">194</td></tr>
+  </tbody>
+</table>
+</div>
+
+<ChatPrompt
+  title="Calculating dB SPL"
+  q1="A sound source produces 80 dB SPL at 1 meter. A second identical source is switched on next to the first. By how many dB does the level increase? (Hint: two identical sources double the intensity.) Most people expect the answer to be 80+80 = 160 dB. Why is this wrong?"
+  q2="A microphone measures 400 μPa. Express this as dB SPL (reference: 20 μPa). Show your working using the formula dB SPL = 20·log₁₀(Px/20 μPa)."
+  q3="A pressure ratio of 2 gives +6 dB SPL, while an intensity ratio of 2 gives only +3 dB IL. Yet we say these are the same measurement. Explain why doubling pressure corresponds to quadrupling intensity, and why this means doubling pressure = +6 dB in both the pressure and intensity formulae."
+/>
+
+### 4.2.4 Frequency Weighting: dB(A) and Noise Measurement
+
+Raw dB SPL measures physical sound pressure without regard to how the human ear perceives it. But the ear is not equally sensitive at all frequencies — it is most sensitive around 1–4 kHz and far less sensitive to very low or very high frequencies (as captured by the equal-loudness contours covered in Chapter 5).
+
+**Frequency weighting** applies a filter to the microphone signal before computing the level, so that the measured number better reflects perceived loudness. Several standardized weightings exist:
+
+- **A-weighting (dB(A) or dBA):** The most widely used. The A-weighting curve mirrors the inverse of the 40-phon equal-loudness contour, attenuating low frequencies (strongly) and very high frequencies (slightly). It is the standard for environmental noise, occupational noise, and community noise assessment.
+- **C-weighting (dBC):** Nearly flat across the mid-frequency range, with only gentle attenuation at the extremes. Used for peak noise measurements and for assessing low-frequency noise (e.g., wind turbines, HVAC).
+- **Z-weighting (dBZ):** Flat, unweighted — essentially equivalent to dB SPL. Used when the raw physical level matters regardless of frequency content.
+
+<Callout type="key">
+When you see a noise limit expressed as "85 dB(A)" or "55 dBA" — for example on a building permit, an occupational health regulation, or a product specification — that number is A-weighted. A measurement in dB SPL and one in dB(A) can differ by 20 dB or more for the same physical sound if it is predominantly low-frequency.
+</Callout>
+
+**Common noise metrics used in practice:**
+
+- **L<sub>Aeq,T</sub>** (Equivalent continuous A-weighted level): The steady level that would deliver the same total A-weighted sound energy over time period T. The fundamental metric for assessing average exposure. Used in environmental noise standards (e.g., WHO recommends L<sub>Aeq</sub> < 53 dBA outdoors during the day).
+- **L<sub>Amax</sub>** (Maximum A-weighted level): The highest instantaneous A-weighted level during a measurement period. Used for assessing impulsive or intermittent events.
+- **L<sub>night</sub>** (Night-time noise level): Typically L<sub>Aeq</sub> from 11 pm to 7 am, with an extra 10 dB penalty applied in some standards (L<sub>den</sub>) to reflect the greater disturbance caused by noise during sleep.
+- **L<sub>10</sub>, L<sub>50</sub>, L<sub>90</sub>** (Statistical levels): The level exceeded 10%, 50%, and 90% of the time respectively. L<sub>90</sub> approximates the background noise level; L<sub>10</sub> approximates the noisy peaks.
+
+**Occupational noise exposure** is regulated in most countries. In the US, OSHA sets the permissible exposure limit at 90 dBA for an 8-hour working day, with the threshold for mandatory hearing protection at 85 dBA (the NIOSH recommended limit). The equal-energy rule applies: for every 3 dB increase in level, the allowable exposure time halves. At 88 dBA the limit is 4 hours; at 91 dBA, 2 hours; at 94 dBA, 1 hour.
+
+<Callout type="warning">
+Noise-induced hearing loss is permanent and cumulative. Cochlear hair cells destroyed by loud noise do not regenerate. Regular exposure above 85 dBA without hearing protection is the leading cause of preventable hearing loss in adults — it is also entirely silent in its progression until significant damage has occurred.
+</Callout>
+
+<ChatPrompt
+  title="Frequency weighting and noise assessment"
+  q1="A road next to a housing development is measured at 70 dB SPL and 62 dBA. The 8 dB difference tells you something specific about the character of the traffic noise. What does it tell you, and why?"
+  q2="An industrial worker is exposed to 94 dBA for 1 hour, then 85 dBA for the remaining 7 hours. Using the equal-energy rule (each +3 dB halves allowable exposure time, with 8 hours allowed at 85 dBA), calculate whether this exposure violates the NIOSH daily limit. (Hint: express each exposure as a fraction of the allowable time at that level, then add the fractions.)"
+  q3="A neighbour complains that a new wind turbine is too loud. A measurement shows 45 dBA at the property boundary — well within typical noise limits. However, the neighbour reports it is disturbing their sleep. What acoustic property of wind turbine noise might explain why 45 dBA feels more intrusive than 45 dBA of, say, traffic? What weighting or metric might capture this better?"
+/>
+
+---
+
+## 4.3 Sound Propagation
+
+### 4.3.1 What Happens to Sound as It Travels?
+
+When sound leaves a source and travels through space, two fundamental things happen even in the absence of any surfaces:
+
+**Delay:** Sound travels at approximately 343 m/s in air at room temperature. A listener 34.3 m from a source hears the sound 0.1 seconds after it is produced. At large distances — say, 343 m — the delay is a full second. In a concert hall, delays of 20–50 ms from ceiling and side-wall reflections are easily audible.
+
+**Attenuation:** The further sound travels, the quieter it becomes. This is not because energy is lost — rather, the same amount of energy is spread over an ever-larger area as the wavefront expands outward.
+
+### 4.3.2 The Inverse-Square Law
+
+In a free field (no reflecting surfaces), a point source radiates energy equally in all directions. The wavefront forms an expanding sphere. As the radius doubles, the surface area of the sphere quadruples (area = 4πr²). Since the total power is constant but must cover four times the area, the intensity at any point drops to one quarter:
+
+<Equation label="Inverse-square law">I ∝ 1 / d²</Equation>
+
+Expressed in decibels, doubling the distance from a point source reduces the level by exactly 6 dB:
+
+<Equation label="Level change with distance">ΔL = 10 · log₁₀(d₁² / d₂²) = 20 · log₁₀(d₁ / d₂)</Equation>
+
+**Example:** If a loudspeaker produces 94 dB SPL at 1 m, what is the level at 4 m?
+
+d₂ / d₁ = 4, so ΔL = 20 · log(1/4) = 20 · (−0.6) = −12 dB → **82 dB SPL at 4 m**
+
+<Callout type="key">
+The inverse-square law: every doubling of distance = −6 dB. Every halving of distance = +6 dB. This is the single most important rule for estimating how sound levels change with distance in open-air conditions.
+</Callout>
+
+<InverseSquareLawExplorer />
+
+<ChatPrompt
+  title="Inverse-square law calculations"
+  q1="A pneumatic drill produces 110 dB SPL at 1 m. A construction worker stands 2 m away. A site supervisor stands 8 m away. A resident in a house 32 m away has a window open. Calculate the level at each distance. At which distances does the level exceed 85 dBA (the occupational hearing damage threshold)? At which does it exceed the UK daytime noise nuisance guideline of 55 dBA?"
+  q2="The inverse-square law assumes a point source radiating in all directions. A line source (like a long straight road with steady traffic) attenuates at only −3 dB per doubling of distance. Why? Think about how the wavefront shape differs between a point source (expanding sphere) and a line source (expanding cylinder)."
+/>
+
+### 4.3.3 Atmospheric Absorption and Other Effects
+
+Beyond the inverse-square law, several additional mechanisms attenuate sound over long distances:
+
+**Atmospheric absorption:** Air itself absorbs sound, converting acoustic energy into heat via viscous and thermal losses. The effect depends strongly on frequency — high frequencies are absorbed much more than low ones. At 4 kHz, the absorption coefficient in typical outdoor air is about 1 dB per 100 m; at 250 Hz, it is only around 0.1 dB per 100 m. This is why distant thunder sounds like a low rumble even though lightning produces a broadband crack — the high frequencies are filtered out by the atmosphere.
+
+**Ground effects:** Near-ground propagation introduces interference between the direct wave and the wave reflected off the ground surface (the ground effect or ground reflection). Depending on the ground impedance and geometry, this can cause significant attenuation in a narrow frequency band (typically 200–600 Hz) — or enhancement if the reflections add in phase.
+
+**Meteorological effects:** Wind and temperature gradients refract sound. Sound travelling downwind is bent toward the ground (increasing level at a receiver); sound travelling upwind is bent upward (reducing level). Temperature inversions at night trap sound near the ground, which is why sounds carry further on still, cold nights.
+
+---
+
+## 4.4 Room Acoustics
+
+### 4.4.1 Sound in Enclosed Spaces
+
+When sound is produced inside a room, it does not simply radiate away — it reflects off the walls, floor, and ceiling repeatedly. Three distinct processes occur at every surface encounter:
+
+**Transmission:** Some fraction of the incident energy passes through the surface into the adjacent space. The transmission coefficient τ ranges from nearly 1 (thin, light membrane) to near 0 (thick concrete wall).
+
+**Reflection:** The remaining energy reflects back into the room. Early reflections (arriving within ~50 ms of the direct sound) are perceived as discrete echoes; they can enhance speech intelligibility if they reinforce the direct signal.
+
+**Absorption:** Some energy is converted to heat in the surface material. The **absorption coefficient α** (0 to 1) describes what fraction of incident energy is absorbed. Soft materials like carpets, curtains, and acoustic foam have high α; hard surfaces like concrete, glass, and plaster have very low α.
+
+### 4.4.2 Reverberation and T₆₀
+
+After the direct sound and early reflections, the room fills with a dense, diffuse field of overlapping reflections — **reverberation**. Unlike discrete echoes, late reverberation has no perceptible spatial direction; it arrives from all directions simultaneously.
+
+When a sound source is switched off, the reverberant energy decays exponentially. The standard measure of reverberation is **T₆₀** (sometimes called RT60): the time in seconds for the reverberant sound level to decay by 60 dB after the source ceases.
+
+<Equation label="Sabine's formula for reverberation time">T₆₀ = 0.161 · V / A</Equation>
+
+where V is the room volume in m³ and A is the total absorption (the sum of each surface area multiplied by its absorption coefficient, in m², also called sabins).
+
+Reverberation time has a profound effect on the character of a space:
+- **Too short** (T₆₀ < 0.3 s): the room sounds "dead" — like an anechoic chamber. Uncomfortable for music; fine for speech.
+- **Optimal for speech** (T₆₀ ≈ 0.5–0.8 s): reflections reinforce the direct sound without smearing consonants.
+- **Optimal for orchestral music** (T₆₀ ≈ 1.8–2.2 s): reverb blends notes into a rich, enveloping sound.
+- **Too long** (T₆₀ > 3 s): successive words or notes overlap and obscure each other — typical of large cathedrals or empty concrete halls.
+
+### 4.4.3 Room Modes and Standing Waves
+
+At low frequencies, the room does not fill with a diffuse reverberant field — instead, it supports **room modes**: standing waves between parallel surfaces. These are the three-dimensional equivalent of the standing waves in a pipe.
+
+For a rectangular room with dimensions Lx, Ly, Lz, the axial room modes (along one dimension only) occur at:
+
+<Equation label="Axial room modes">f = n · v / (2L), where n = 1, 2, 3, …</Equation>
+
+At frequencies below the **Schroeder frequency** (typically 100–300 Hz in a typical room), the room behaves as a collection of discrete resonances. Bass notes whose fundamental falls near a room mode are significantly amplified; notes near the nulls between modes may be nearly inaudible. This is why bass response varies so dramatically around a room.
+
+<Callout type="key">
+Room modes are not a flaw — they are an inevitable consequence of sound reflecting between parallel surfaces. Good room acoustic design either avoids parallel surfaces (splayed walls) or places absorptive treatment at the pressure antinodes of problematic modes.
+</Callout>
+
+<ChatPrompt
+  title="Reverberation and room acoustics"
+  q1="A lecture theatre has a volume of 1,200 m³ and a total absorption of 150 sabins. Calculate its T₆₀ using Sabine's formula. The architect wants to improve speech intelligibility by reducing T₆₀ to 0.6 s. What total absorption would be needed? What is the ratio of the new absorption to the old?"
+  q2="You are standing in a large cathedral with T₆₀ ≈ 6 seconds. Someone speaks to you from 10 metres away. The direct sound arrives, followed immediately by dense reverberation that lasts 6 seconds. Explain qualitatively why speech intelligibility is poor in this space, and why Gregorian chant — which uses slow, sustained notes — actually sounds beautiful in the same environment where a conversation sounds unintelligible."
+  q3="A home studio has a noticeable bass 'boom' at around 80 Hz regardless of what music is played. The room is 4.3 m long. Calculate the fundamental axial mode frequency along the length of the room (use v = 343 m/s). Does this match the observed problem frequency? What are two acoustic treatments that could reduce the effect of this mode?"
+/>
+
+---
+
+## 4.5 Summary
+
+Acoustic levels span fourteen orders of magnitude — a range that makes linear measurement hopeless and logarithmic measurement essential. Decibels convert ratios to a compact additive scale: dB IL = 10·log(I/Iᵣ) and dB SPL = 20·log(P/Pᵣ), both referenced to the threshold of human hearing.
+
+A-weighting (dBA) adjusts the measured level to reflect the frequency sensitivity of the ear, and is the international standard for noise assessment, occupational exposure limits, and environmental noise regulation. The equal-energy rule — +3 dB halves allowable exposure time — governs hearing protection requirements worldwide.
+
+In free-field conditions, level falls at −6 dB per doubling of distance (the inverse-square law). In enclosed spaces, reflections create reverberation characterised by T₆₀, and low-frequency room modes produce uneven bass response. Good acoustic design balances these effects for the intended use of the space.
+
+<Chapter04Quiz />
+
+<PodcastPlayer
+  src="/audio/Ch4_podcast.m4a"
+  title="Chapter 4: Sound Levels & Propagation Overview"
+  position="bottom"
+/>

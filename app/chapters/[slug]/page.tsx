@@ -22,13 +22,19 @@ import ActivitySoundwalk from '@/components/ActivitySoundwalk'
 import ActivityProfessions from '@/components/ActivityProfessions'
 import ChapterQuiz from '@/components/ChapterQuiz'
 import Chapter01Quiz from '@/components/Chapter01Quiz'
+import Chapter02Quiz from '@/components/Chapter02Quiz'
+import Chapter04Quiz from '@/components/Chapter04Quiz'
 import Chapter03Quiz from '@/components/Chapter03Quiz'
+import Chapter05Quiz from '@/components/Chapter05Quiz'
 import PodcastPlayer from '@/components/PodcastPlayer'
 import FilterExplorer from '@/components/FilterExplorer'
 import DampingExplorer from '@/components/DampingExplorer'
+import DampedOscillationExplorer from '@/components/DampedOscillationExplorer'
 import ConvolutionDemo from '@/components/ConvolutionDemo'
 import ModulationExplorer from '@/components/ModulationExplorer'
 import WindowingDemo from '@/components/WindowingDemo'
+import StandingWaveExplorer from '@/components/StandingWaveExplorer'
+import InverseSquareLawExplorer from '@/components/InverseSquareLawExplorer'
 import CochleaExplorer from '@/components/CochleaExplorer'
 import BinauralDemo from '@/components/BinauralDemo'
 import SpectrogramViewer from '@/components/SpectrogramViewer'
@@ -91,13 +97,19 @@ const components = {
   ActivityProfessions,
   ChapterQuiz,
   Chapter01Quiz,
+  Chapter02Quiz,
+  Chapter04Quiz,
+  InverseSquareLawExplorer,
   Chapter03Quiz,
+  Chapter05Quiz,
   PodcastPlayer,
   FilterExplorer,
   DampingExplorer,
+  DampedOscillationExplorer,
   ConvolutionDemo,
   ModulationExplorer,
   WindowingDemo,
+  StandingWaveExplorer,
   CochleaExplorer,
   BinauralDemo,
   SpectrogramViewer,
