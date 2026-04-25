@@ -10,7 +10,7 @@ const chapters = [
   {
     slug: '02-standing-waves',
     number: 2,
-    title: 'Standing Waves & Musical Acoustics',
+    title: 'Vibration, Waves & Musical Acoustics',
     description: 'Vibrating strings, pipes, membranes, and musical instruments.',
   },
   {

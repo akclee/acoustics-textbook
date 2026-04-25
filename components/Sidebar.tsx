@@ -13,8 +13,8 @@ const chapters = [
   {
     slug: '02-standing-waves',
     number: 2,
-    title: 'Standing Waves & Musical Acoustics',
-    topics: ['Vibrating Strings', 'Pipes & Membranes', 'Musical Instruments'],
+    title: 'Vibration, Waves & Musical Acoustics',
+    topics: ['Simple Harmonic Motion', 'Standing Waves', 'Musical Instruments'],
   },
   {
     slug: '03-signal-analysis',
